@@ -11,7 +11,6 @@
 		2E99950D27D507D20047D135 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99950C27D507D20047D135 /* SceneDelegate.swift */; };
 		2E99950F27D507D20047D135 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99950E27D507D20047D135 /* ViewController.swift */; };
 		2E99951227D507D20047D135 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E99951027D507D20047D135 /* Main.storyboard */; };
-		2E99951527D507D20047D135 /* GPS_Safe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2E99951327D507D20047D135 /* GPS_Safe.xcdatamodeld */; };
 		2E99951727D507D30047D135 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E99951627D507D30047D135 /* Assets.xcassets */; };
 		2E99951A27D507D30047D135 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E99951827D507D30047D135 /* LaunchScreen.storyboard */; };
 		2E99952527D507D40047D135 /* GPS_SafeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99952427D507D40047D135 /* GPS_SafeTests.swift */; };
@@ -38,11 +37,10 @@
 
 /* Begin PBXFileReference section */
 		2E99950727D507D20047D135 /* GPS Safe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GPS Safe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2E99950A27D507D20047D135 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2E99950A27D507D20047D135 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; usesTabs = 1; };
 		2E99950C27D507D20047D135 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2E99950E27D507D20047D135 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2E99951127D507D20047D135 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		2E99951427D507D20047D135 /* GPS_Safe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GPS_Safe.xcdatamodel; sourceTree = "<group>"; };
 		2E99951627D507D30047D135 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E99951927D507D30047D135 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2E99951B27D507D30047D135 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -87,6 +85,7 @@
 				2E99950827D507D20047D135 /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		2E99950827D507D20047D135 /* Products */ = {
 			isa = PBXGroup;
@@ -108,7 +107,6 @@
 				2E99951627D507D30047D135 /* Assets.xcassets */,
 				2E99951827D507D30047D135 /* LaunchScreen.storyboard */,
 				2E99951B27D507D30047D135 /* Info.plist */,
-				2E99951327D507D20047D135 /* GPS_Safe.xcdatamodeld */,
 			);
 			path = "GPS Safe";
 			sourceTree = "<group>";
@@ -262,7 +260,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E99950F27D507D20047D135 /* ViewController.swift in Sources */,
-				2E99951527D507D20047D135 /* GPS_Safe.xcdatamodeld in Sources */,
 				2E99950B27D507D20047D135 /* AppDelegate.swift in Sources */,
 				2E99950D27D507D20047D135 /* SceneDelegate.swift in Sources */,
 			);
@@ -608,19 +605,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		2E99951327D507D20047D135 /* GPS_Safe.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				2E99951427D507D20047D135 /* GPS_Safe.xcdatamodel */,
-			);
-			currentVersion = 2E99951427D507D20047D135 /* GPS_Safe.xcdatamodel */;
-			path = GPS_Safe.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 2E9994FF27D507D20047D135 /* Project object */;
 }
