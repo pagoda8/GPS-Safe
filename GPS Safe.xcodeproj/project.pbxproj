@@ -9,13 +9,10 @@
 /* Begin PBXBuildFile section */
 		2E99950B27D507D20047D135 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99950A27D507D20047D135 /* AppDelegate.swift */; };
 		2E99950D27D507D20047D135 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99950C27D507D20047D135 /* SceneDelegate.swift */; };
-		2E99950F27D507D20047D135 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99950E27D507D20047D135 /* ViewController.swift */; };
 		2E99951227D507D20047D135 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E99951027D507D20047D135 /* Main.storyboard */; };
 		2E99951727D507D30047D135 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E99951627D507D30047D135 /* Assets.xcassets */; };
 		2E99951A27D507D30047D135 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E99951827D507D30047D135 /* LaunchScreen.storyboard */; };
-		2E99952527D507D40047D135 /* GPS_SafeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99952427D507D40047D135 /* GPS_SafeTests.swift */; };
-		2E99952F27D507D40047D135 /* GPS_SafeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99952E27D507D40047D135 /* GPS_SafeUITests.swift */; };
-		2E99953127D507D40047D135 /* GPS_SafeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99953027D507D40047D135 /* GPS_SafeUITestsLaunchTests.swift */; };
+		2E99953E27DE93F70047D135 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99953D27DE93F70047D135 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,16 +36,13 @@
 		2E99950727D507D20047D135 /* GPS Safe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GPS Safe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E99950A27D507D20047D135 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; usesTabs = 1; };
 		2E99950C27D507D20047D135 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2E99950E27D507D20047D135 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2E99951127D507D20047D135 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2E99951627D507D30047D135 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E99951927D507D30047D135 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2E99951B27D507D30047D135 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E99952027D507D40047D135 /* GPS SafeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GPS SafeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2E99952427D507D40047D135 /* GPS_SafeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPS_SafeTests.swift; sourceTree = "<group>"; };
 		2E99952A27D507D40047D135 /* GPS SafeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GPS SafeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2E99952E27D507D40047D135 /* GPS_SafeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPS_SafeUITests.swift; sourceTree = "<group>"; };
-		2E99953027D507D40047D135 /* GPS_SafeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPS_SafeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2E99953D27DE93F70047D135 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +74,6 @@
 			isa = PBXGroup;
 			children = (
 				2E99950927D507D20047D135 /* GPS Safe */,
-				2E99952327D507D40047D135 /* GPS SafeTests */,
-				2E99952D27D507D40047D135 /* GPS SafeUITests */,
 				2E99950827D507D20047D135 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -102,30 +94,13 @@
 			children = (
 				2E99950A27D507D20047D135 /* AppDelegate.swift */,
 				2E99950C27D507D20047D135 /* SceneDelegate.swift */,
-				2E99950E27D507D20047D135 /* ViewController.swift */,
 				2E99951027D507D20047D135 /* Main.storyboard */,
+				2E99953D27DE93F70047D135 /* LoginViewController.swift */,
 				2E99951627D507D30047D135 /* Assets.xcassets */,
 				2E99951827D507D30047D135 /* LaunchScreen.storyboard */,
 				2E99951B27D507D30047D135 /* Info.plist */,
 			);
 			path = "GPS Safe";
-			sourceTree = "<group>";
-		};
-		2E99952327D507D40047D135 /* GPS SafeTests */ = {
-			isa = PBXGroup;
-			children = (
-				2E99952427D507D40047D135 /* GPS_SafeTests.swift */,
-			);
-			path = "GPS SafeTests";
-			sourceTree = "<group>";
-		};
-		2E99952D27D507D40047D135 /* GPS SafeUITests */ = {
-			isa = PBXGroup;
-			children = (
-				2E99952E27D507D40047D135 /* GPS_SafeUITests.swift */,
-				2E99953027D507D40047D135 /* GPS_SafeUITestsLaunchTests.swift */,
-			);
-			path = "GPS SafeUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,7 +234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E99950F27D507D20047D135 /* ViewController.swift in Sources */,
+				2E99953E27DE93F70047D135 /* LoginViewController.swift in Sources */,
 				2E99950B27D507D20047D135 /* AppDelegate.swift in Sources */,
 				2E99950D27D507D20047D135 /* SceneDelegate.swift in Sources */,
 			);
@@ -269,7 +244,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E99952527D507D40047D135 /* GPS_SafeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,8 +251,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E99953127D507D40047D135 /* GPS_SafeUITestsLaunchTests.swift in Sources */,
-				2E99952F27D507D40047D135 /* GPS_SafeUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +418,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -474,6 +447,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
