@@ -7,32 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E35391227DEBDD2004653CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E35391127DEBDD2004653CD /* GoogleService-Info.plist */; };
 		2E99950B27D507D20047D135 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99950A27D507D20047D135 /* AppDelegate.swift */; };
 		2E99950D27D507D20047D135 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99950C27D507D20047D135 /* SceneDelegate.swift */; };
 		2E99951227D507D20047D135 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E99951027D507D20047D135 /* Main.storyboard */; };
 		2E99951727D507D30047D135 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E99951627D507D30047D135 /* Assets.xcassets */; };
 		2E99951A27D507D30047D135 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E99951827D507D30047D135 /* LaunchScreen.storyboard */; };
 		2E99953E27DE93F70047D135 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99953D27DE93F70047D135 /* LoginViewController.swift */; };
+		6D2BBF37765382061F9664B1 /* Pods_GPS_Safe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE0B881CBE0698D3BAE1B8B /* Pods_GPS_Safe.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		2E99952127D507D40047D135 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2E9994FF27D507D20047D135 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2E99950627D507D20047D135;
-			remoteInfo = "GPS Safe";
-		};
-		2E99952B27D507D40047D135 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2E9994FF27D507D20047D135 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2E99950627D507D20047D135;
-			remoteInfo = "GPS Safe";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		2E35391127DEBDD2004653CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2E99950727D507D20047D135 /* GPS Safe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GPS Safe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E99950A27D507D20047D135 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; usesTabs = 1; };
 		2E99950C27D507D20047D135 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,9 +26,10 @@
 		2E99951627D507D30047D135 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E99951927D507D30047D135 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2E99951B27D507D30047D135 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2E99952027D507D40047D135 /* GPS SafeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GPS SafeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2E99952A27D507D40047D135 /* GPS SafeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GPS SafeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E99953D27DE93F70047D135 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		8A14D2B71B6124253112C01F /* Pods-GPS Safe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPS Safe.debug.xcconfig"; path = "Target Support Files/Pods-GPS Safe/Pods-GPS Safe.debug.xcconfig"; sourceTree = "<group>"; };
+		8A59FEC8B556947E629A5531 /* Pods-GPS Safe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPS Safe.release.xcconfig"; path = "Target Support Files/Pods-GPS Safe/Pods-GPS Safe.release.xcconfig"; sourceTree = "<group>"; };
+		9AE0B881CBE0698D3BAE1B8B /* Pods_GPS_Safe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GPS_Safe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,31 +37,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2E99951D27D507D40047D135 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2E99952727D507D40047D135 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				6D2BBF37765382061F9664B1 /* Pods_GPS_Safe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		145E01EDD94E8FC801D3F55C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9AE0B881CBE0698D3BAE1B8B /* Pods_GPS_Safe.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2242618F97C997AEBFDCC0CA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8A14D2B71B6124253112C01F /* Pods-GPS Safe.debug.xcconfig */,
+				8A59FEC8B556947E629A5531 /* Pods-GPS Safe.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		2E9994FE27D507D20047D135 = {
 			isa = PBXGroup;
 			children = (
 				2E99950927D507D20047D135 /* GPS Safe */,
 				2E99950827D507D20047D135 /* Products */,
+				2242618F97C997AEBFDCC0CA /* Pods */,
+				145E01EDD94E8FC801D3F55C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 1;
@@ -83,8 +77,6 @@
 			isa = PBXGroup;
 			children = (
 				2E99950727D507D20047D135 /* GPS Safe.app */,
-				2E99952027D507D40047D135 /* GPS SafeTests.xctest */,
-				2E99952A27D507D40047D135 /* GPS SafeUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -98,6 +90,7 @@
 				2E99953D27DE93F70047D135 /* LoginViewController.swift */,
 				2E99951627D507D30047D135 /* Assets.xcassets */,
 				2E99951827D507D30047D135 /* LaunchScreen.storyboard */,
+				2E35391127DEBDD2004653CD /* GoogleService-Info.plist */,
 				2E99951B27D507D30047D135 /* Info.plist */,
 			);
 			path = "GPS Safe";
@@ -110,9 +103,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2E99953427D507D40047D135 /* Build configuration list for PBXNativeTarget "GPS Safe" */;
 			buildPhases = (
+				C4A2141C6F78153A29B52C8A /* [CP] Check Pods Manifest.lock */,
 				2E99950327D507D20047D135 /* Sources */,
 				2E99950427D507D20047D135 /* Frameworks */,
 				2E99950527D507D20047D135 /* Resources */,
+				FFEB6BDC9DCBFAF1B619E0AA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -122,42 +117,6 @@
 			productName = "GPS Safe";
 			productReference = 2E99950727D507D20047D135 /* GPS Safe.app */;
 			productType = "com.apple.product-type.application";
-		};
-		2E99951F27D507D40047D135 /* GPS SafeTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2E99953727D507D40047D135 /* Build configuration list for PBXNativeTarget "GPS SafeTests" */;
-			buildPhases = (
-				2E99951C27D507D40047D135 /* Sources */,
-				2E99951D27D507D40047D135 /* Frameworks */,
-				2E99951E27D507D40047D135 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2E99952227D507D40047D135 /* PBXTargetDependency */,
-			);
-			name = "GPS SafeTests";
-			productName = "GPS SafeTests";
-			productReference = 2E99952027D507D40047D135 /* GPS SafeTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		2E99952927D507D40047D135 /* GPS SafeUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2E99953A27D507D40047D135 /* Build configuration list for PBXNativeTarget "GPS SafeUITests" */;
-			buildPhases = (
-				2E99952627D507D40047D135 /* Sources */,
-				2E99952727D507D40047D135 /* Frameworks */,
-				2E99952827D507D40047D135 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2E99952C27D507D40047D135 /* PBXTargetDependency */,
-			);
-			name = "GPS SafeUITests";
-			productName = "GPS SafeUITests";
-			productReference = 2E99952A27D507D40047D135 /* GPS SafeUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -171,14 +130,6 @@
 				TargetAttributes = {
 					2E99950627D507D20047D135 = {
 						CreatedOnToolsVersion = 13.2.1;
-					};
-					2E99951F27D507D40047D135 = {
-						CreatedOnToolsVersion = 13.2.1;
-						TestTargetID = 2E99950627D507D20047D135;
-					};
-					2E99952927D507D40047D135 = {
-						CreatedOnToolsVersion = 13.2.1;
-						TestTargetID = 2E99950627D507D20047D135;
 					};
 				};
 			};
@@ -196,8 +147,6 @@
 			projectRoot = "";
 			targets = (
 				2E99950627D507D20047D135 /* GPS Safe */,
-				2E99951F27D507D40047D135 /* GPS SafeTests */,
-				2E99952927D507D40047D135 /* GPS SafeUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -208,26 +157,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E99951A27D507D30047D135 /* LaunchScreen.storyboard in Resources */,
+				2E35391227DEBDD2004653CD /* GoogleService-Info.plist in Resources */,
 				2E99951727D507D30047D135 /* Assets.xcassets in Resources */,
 				2E99951227D507D20047D135 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2E99951E27D507D40047D135 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2E99952827D507D40047D135 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C4A2141C6F78153A29B52C8A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GPS Safe-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FFEB6BDC9DCBFAF1B619E0AA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GPS Safe/Pods-GPS Safe-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GPS Safe/Pods-GPS Safe-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GPS Safe/Pods-GPS Safe-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2E99950327D507D20047D135 /* Sources */ = {
@@ -240,34 +218,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2E99951C27D507D40047D135 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2E99952627D507D40047D135 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		2E99952227D507D40047D135 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2E99950627D507D20047D135 /* GPS Safe */;
-			targetProxy = 2E99952127D507D40047D135 /* PBXContainerItemProxy */;
-		};
-		2E99952C27D507D40047D135 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2E99950627D507D20047D135 /* GPS Safe */;
-			targetProxy = 2E99952B27D507D40047D135 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2E99951027D507D20047D135 /* Main.storyboard */ = {
@@ -407,6 +358,7 @@
 		};
 		2E99953527D507D40047D135 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8A14D2B71B6124253112C01F /* Pods-GPS Safe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -436,6 +388,7 @@
 		};
 		2E99953627D507D40047D135 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8A59FEC8B556947E629A5531 /* Pods-GPS Safe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -463,82 +416,6 @@
 			};
 			name = Release;
 		};
-		2E99953827D507D40047D135 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7453PNFCT7;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pagoda8.GPS-SafeTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GPS Safe.app/GPS Safe";
-			};
-			name = Debug;
-		};
-		2E99953927D507D40047D135 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7453PNFCT7;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pagoda8.GPS-SafeTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GPS Safe.app/GPS Safe";
-			};
-			name = Release;
-		};
-		2E99953B27D507D40047D135 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7453PNFCT7;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pagoda8.GPS-SafeUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "GPS Safe";
-			};
-			name = Debug;
-		};
-		2E99953C27D507D40047D135 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7453PNFCT7;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pagoda8.GPS-SafeUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "GPS Safe";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -556,24 +433,6 @@
 			buildConfigurations = (
 				2E99953527D507D40047D135 /* Debug */,
 				2E99953627D507D40047D135 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2E99953727D507D40047D135 /* Build configuration list for PBXNativeTarget "GPS SafeTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2E99953827D507D40047D135 /* Debug */,
-				2E99953927D507D40047D135 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2E99953A27D507D40047D135 /* Build configuration list for PBXNativeTarget "GPS SafeUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2E99953B27D507D40047D135 /* Debug */,
-				2E99953C27D507D40047D135 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
