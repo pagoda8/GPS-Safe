@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class LoginViewController: UIViewController {
+	
+	private let db = Database.database().reference()
 	
 	@IBOutlet weak var username: UITextField!
 	@IBOutlet weak var password: UITextField!
@@ -30,7 +33,7 @@ class LoginViewController: UIViewController {
 		}
 	}
 	
-	func validFields() -> Bool {
+	private func validFields() -> Bool {
 		if (username.text?.isEmpty == true) {
 			let alert = UIAlertController(title: "Username missing", message: "Please input a username", preferredStyle: UIAlertController.Style.alert)
 			alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
@@ -48,13 +51,15 @@ class LoginViewController: UIViewController {
 		return true
 	}
 	
-	func signup() {
+	private func signup() {
 		//Check if username already exists, if so show alert
 		//Create account in db
 		//Show success alert and ask to log in
+		
+		db.child("Users").child(username.text!).child("password").setValue(password.text!)
 	}
 	
-	func login() {
+	private func login() {
 		//Try to log in, if success go to MySafe //Later make global var for username
 		//Else show alert
 		let vc = self.storyboard?.instantiateViewController(withIdentifier: "mySafe")

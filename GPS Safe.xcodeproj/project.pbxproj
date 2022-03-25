@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2E35391227DEBDD2004653CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E35391127DEBDD2004653CD /* GoogleService-Info.plist */; };
+		2E4A59D227EE660E0060401A /* MySafeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4A59D127EE660E0060401A /* MySafeViewController.swift */; };
 		2E99950B27D507D20047D135 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99950A27D507D20047D135 /* AppDelegate.swift */; };
 		2E99950D27D507D20047D135 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99950C27D507D20047D135 /* SceneDelegate.swift */; };
 		2E99951227D507D20047D135 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E99951027D507D20047D135 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		2E35391127DEBDD2004653CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2E4A59D127EE660E0060401A /* MySafeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySafeViewController.swift; sourceTree = "<group>"; };
 		2E99950727D507D20047D135 /* GPS Safe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GPS Safe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E99950A27D507D20047D135 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; usesTabs = 1; };
 		2E99950C27D507D20047D135 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,7 +60,6 @@
 				8A14D2B71B6124253112C01F /* Pods-GPS Safe.debug.xcconfig */,
 				8A59FEC8B556947E629A5531 /* Pods-GPS Safe.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -87,6 +88,7 @@
 				2E99950A27D507D20047D135 /* AppDelegate.swift */,
 				2E99950C27D507D20047D135 /* SceneDelegate.swift */,
 				2E99951027D507D20047D135 /* Main.storyboard */,
+				2E4A59D127EE660E0060401A /* MySafeViewController.swift */,
 				2E99953D27DE93F70047D135 /* LoginViewController.swift */,
 				2E99951627D507D30047D135 /* Assets.xcassets */,
 				2E99951827D507D30047D135 /* LaunchScreen.storyboard */,
@@ -213,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E99953E27DE93F70047D135 /* LoginViewController.swift in Sources */,
+				2E4A59D227EE660E0060401A /* MySafeViewController.swift in Sources */,
 				2E99950B27D507D20047D135 /* AppDelegate.swift in Sources */,
 				2E99950D27D507D20047D135 /* SceneDelegate.swift in Sources */,
 			);

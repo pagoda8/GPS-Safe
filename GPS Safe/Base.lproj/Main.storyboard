@@ -84,7 +84,7 @@
         <!--MySafe View Controller-->
         <scene sceneID="xiU-IS-JZt">
             <objects>
-                <viewController storyboardIdentifier="mySafe" title="MySafe View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OUV-XI-tvy" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mySafe" title="MySafe View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OUV-XI-tvy" customClass="MySafeViewController" customModule="GPS_Safe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mum-JH-nCe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
