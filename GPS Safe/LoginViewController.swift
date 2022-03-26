@@ -10,7 +10,7 @@ import FirebaseDatabase
 
 class LoginViewController: UIViewController {
 	
-	private let db = Database.database().reference()
+	private let users = Database.database().reference(withPath: "Users")
 	
 	@IBOutlet weak var username: UITextField!
 	@IBOutlet weak var password: UITextField!
@@ -52,30 +52,48 @@ class LoginViewController: UIViewController {
 	}
 	
 	private func signup() {
-		//Check if username already exists, if so show alert
-		//Create account in db
-		//Show success alert and ask to log in
-		
-		db.child("Users").child(username.text!).child("password").setValue(password.text!)
+		users.observeSingleEvent(of: .value, with: { snapshot in
+			//User doesn't exist
+			if (!snapshot.hasChild(self.username.text!)) {
+				self.users.child(self.username.text!).child("password").setValue(self.password.text!)
+				
+				let alert = UIAlertController(title: "Success", message: "Account was created", preferredStyle: UIAlertController.Style.alert)
+				alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+				self.present(alert, animated: true, completion: nil)
+			} //User exists
+			else {
+				let alert = UIAlertController(title: "Username taken", message: "Chose a different username", preferredStyle: UIAlertController.Style.alert)
+				alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+				self.present(alert, animated: true, completion: nil)
+			}
+		})
 	}
 	
 	private func login() {
-		//Try to log in, if success go to MySafe //Later make global var for username
-		//Else show alert
-		let vc = self.storyboard?.instantiateViewController(withIdentifier: "mySafe")
-		vc?.modalPresentationStyle = .overFullScreen
-		self.present(vc!, animated: true)
+		users.observeSingleEvent(of: .value, with: {snapshot in
+			//User exists
+			if (snapshot.hasChild(self.username.text!)) {
+				let password = snapshot.childSnapshot(forPath: self.username.text!).childSnapshot(forPath: "password")
+				//Password correct
+				if (password.value as! String == self.password.text!) {
+					AppDelegate.get().currentUser = self.username.text!
+					
+					let vc = self.storyboard?.instantiateViewController(withIdentifier: "mySafe")
+					vc?.modalPresentationStyle = .overFullScreen
+					self.present(vc!, animated: true)
+				} //Password incorrect
+				else {
+					let alert = UIAlertController(title: "Invalid password", message: "Try again", preferredStyle: UIAlertController.Style.alert)
+					alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+					self.present(alert, animated: true, completion: nil)
+				}
+			} //User doesn't exist
+			else {
+				let alert = UIAlertController(title: "Invalid username", message: "Try again", preferredStyle: UIAlertController.Style.alert)
+				alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+				self.present(alert, animated: true, completion: nil)
+			}
+		})
 	}
-	
-	
-	/*
-	 // MARK: - Navigation
-	 
-	 // In a storyboard-based application, you will often want to do a little preparation before navigation
-	 override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-	 // Get the new view controller using segue.destination.
-	 // Pass the selected object to the new view controller.
-	 }
-	 */
 	
 }

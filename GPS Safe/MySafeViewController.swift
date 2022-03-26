@@ -10,23 +10,14 @@ import FirebaseDatabase
 
 class MySafeViewController: UIViewController {
 	
-	private let db = Database.database().reference()
-
+	private let users = Database.database().reference(withPath: "Users")
+	private let data = Database.database().reference(withPath: "Data")
+	private let publicKeys = Database.database().reference(withPath: "Public Keys")
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
