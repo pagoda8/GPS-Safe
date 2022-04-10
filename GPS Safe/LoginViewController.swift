@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseDatabase
+import CryptoKit
 
 class LoginViewController: UIViewController {
 	
@@ -35,16 +36,12 @@ class LoginViewController: UIViewController {
 	
 	private func validFields() -> Bool {
 		if (username.text?.isEmpty == true) {
-			let alert = UIAlertController(title: "Username missing", message: "Please input a username", preferredStyle: UIAlertController.Style.alert)
-			alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-			self.present(alert, animated: true, completion: nil)
+			showAlert(title: "Username missing", message: "Please input a username")
 			return false
 		}
 		
 		if (password.text?.isEmpty == true) {
-			let alert = UIAlertController(title: "Password missing", message: "Please input a password", preferredStyle: UIAlertController.Style.alert)
-			alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-			self.present(alert, animated: true, completion: nil)
+			showAlert(title: "Password missing", message: "Please input a password")
 			return false
 		}
 		
@@ -52,30 +49,31 @@ class LoginViewController: UIViewController {
 	}
 	
 	private func signup() {
+		let usernameHashString = hash(input: username.text!)
+		let passwordHashString = hash(input: password.text!)
+		
 		users.observeSingleEvent(of: .value, with: { snapshot in
 			//User doesn't exist
-			if (!snapshot.hasChild(self.username.text!)) {
-				self.users.child(self.username.text!).child("password").setValue(self.password.text!)
-				
-				let alert = UIAlertController(title: "Success", message: "Account was created", preferredStyle: UIAlertController.Style.alert)
-				alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-				self.present(alert, animated: true, completion: nil)
+			if (!snapshot.hasChild(usernameHashString)) {
+				self.users.child(usernameHashString).child("password").setValue(passwordHashString)
+				self.showAlert(title: "Success", message: "Account was created")
 			} //User exists
 			else {
-				let alert = UIAlertController(title: "Username taken", message: "Chose a different username", preferredStyle: UIAlertController.Style.alert)
-				alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-				self.present(alert, animated: true, completion: nil)
+				self.showAlert(title: "Username taken", message: "Choose a different username")
 			}
 		})
 	}
 	
 	private func login() {
+		let usernameHashString = hash(input: username.text!)
+		let passwordHashString = hash(input: password.text!)
+		
 		users.observeSingleEvent(of: .value, with: {snapshot in
 			//User exists
-			if (snapshot.hasChild(self.username.text!)) {
-				let password = snapshot.childSnapshot(forPath: self.username.text!).childSnapshot(forPath: "password")
+			if (snapshot.hasChild(usernameHashString)) {
+				let password = snapshot.childSnapshot(forPath: usernameHashString).childSnapshot(forPath: "password")
 				//Password correct
-				if (password.value as! String == self.password.text!) {
+				if (password.value as! String == passwordHashString) {
 					AppDelegate.get().currentUser = self.username.text!
 					
 					let vc = self.storyboard?.instantiateViewController(withIdentifier: "mySafe")
@@ -83,17 +81,26 @@ class LoginViewController: UIViewController {
 					self.present(vc!, animated: true)
 				} //Password incorrect
 				else {
-					let alert = UIAlertController(title: "Invalid password", message: "Try again", preferredStyle: UIAlertController.Style.alert)
-					alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-					self.present(alert, animated: true, completion: nil)
+					self.showAlert(title: "Invalid password", message: "Try again")
 				}
 			} //User doesn't exist
 			else {
-				let alert = UIAlertController(title: "Invalid username", message: "Try again", preferredStyle: UIAlertController.Style.alert)
-				alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-				self.present(alert, animated: true, completion: nil)
+				self.showAlert(title: "Invalid username", message: "Try again")
 			}
 		})
+	}
+	
+	private func hash(input: String) -> String {
+		let data = Data(input.utf8)
+		let hash = SHA256.hash(data: data)
+		let string = hash.compactMap { String(format: "%02x", $0) }.joined()
+		return string;
+	}
+	
+	private func showAlert(title: String, message: String) {
+		let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+		alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+		self.present(alert, animated: true, completion: nil)
 	}
 	
 }
