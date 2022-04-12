@@ -35,7 +35,7 @@
                                         <rect key="frame" x="0.0" y="110" width="354" height="34"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" textContentType="password"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="kI4-Nh-OCR">
                                         <rect key="frame" x="0.0" y="169" width="354" height="31"/>
@@ -81,25 +81,85 @@
             </objects>
             <point key="canvasLocation" x="139" y="100"/>
         </scene>
-        <!--MySafe View Controller-->
+        <!--Tab Bar Controller-->
+        <scene sceneID="eMm-ZJ-TvS">
+            <objects>
+                <tabBarController storyboardIdentifier="tabController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2zc-hf-xaq" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ls3-qi-nT8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" systemColor="tintColor"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="OUV-XI-tvy" kind="relationship" relationship="viewControllers" id="m6W-Xt-uga"/>
+                        <segue destination="vCh-Ad-j1c" kind="relationship" relationship="viewControllers" id="sdj-vo-Ip7"/>
+                        <segue destination="3fT-Yy-95P" kind="relationship" relationship="viewControllers" id="iRr-mX-GbO"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SQu-GP-KxM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="780" y="100"/>
+        </scene>
+        <!--My Safe View Controller-->
         <scene sceneID="xiU-IS-JZt">
             <objects>
-                <viewController storyboardIdentifier="mySafe" title="MySafe View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OUV-XI-tvy" customClass="MySafeViewController" customModule="GPS_Safe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mySafe" title="My Safe View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OUV-XI-tvy" customClass="MySafeViewController" customModule="GPS_Safe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mum-JH-nCe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="Y06-s4-GtG"/>
                         <color key="backgroundColor" red="0.18944453980000001" green="0.18944453980000001" blue="0.18944453980000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="My Safe" image="tray.full" catalog="system" id="8XB-ks-rku"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TRR-Ix-I9L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="944.92753623188412" y="99.776785714285708"/>
+            <point key="canvasLocation" x="1430" y="100"/>
+        </scene>
+        <!--Shared View Controller-->
+        <scene sceneID="lO9-UH-GJ3">
+            <objects>
+                <viewController storyboardIdentifier="shared" title="Shared View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vCh-Ad-j1c" customClass="SharedViewController" customModule="GPS_Safe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VoX-Wn-QDP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="fdz-Vo-C0i"/>
+                        <color key="backgroundColor" red="0.18944453980000001" green="0.18944453980000001" blue="0.18944453980000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Shared" image="tray.and.arrow.down" catalog="system" id="hfd-Ko-uDv"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vWP-MM-VHL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2132" y="101"/>
+        </scene>
+        <!--My Account View Controller-->
+        <scene sceneID="GoZ-Ya-zeu">
+            <objects>
+                <viewController storyboardIdentifier="myAccount" title="My Account View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3fT-Yy-95P" customClass="MyAccountViewController" customModule="GPS_Safe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="k77-ZO-pzo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="7bI-3E-rQx"/>
+                        <color key="backgroundColor" red="0.18944453980000001" green="0.18944453980000001" blue="0.18944453980000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="My Account" image="person" catalog="system" id="Zdv-h2-18s"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J3Z-LK-1jC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2865" y="100"/>
         </scene>
     </scenes>
     <resources>
+        <image name="person" catalog="system" width="128" height="117"/>
+        <image name="tray.and.arrow.down" catalog="system" width="128" height="109"/>
+        <image name="tray.full" catalog="system" width="128" height="88"/>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

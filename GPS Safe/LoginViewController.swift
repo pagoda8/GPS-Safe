@@ -76,7 +76,7 @@ class LoginViewController: UIViewController {
 				if (password.value as! String == passwordHashString) {
 					AppDelegate.get().currentUser = self.username.text!
 					
-					let vc = self.storyboard?.instantiateViewController(withIdentifier: "mySafe")
+					let vc = self.storyboard?.instantiateViewController(withIdentifier: "tabController")
 					vc?.modalPresentationStyle = .overFullScreen
 					self.present(vc!, animated: true)
 				} //Password incorrect
