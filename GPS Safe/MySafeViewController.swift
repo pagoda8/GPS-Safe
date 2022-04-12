@@ -20,4 +20,8 @@ class MySafeViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+	@IBAction func addTapped(_ sender: Any) {
+		
+	}
+	
 }

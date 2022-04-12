@@ -20,19 +20,19 @@
                                 <rect key="frame" x="30" y="248" width="354" height="200"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login or Sign up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mra-q3-AKU">
-                                        <rect key="frame" x="0.0" y="0.0" width="354" height="26"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="19"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="27.5"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="owh-Z0-2E7">
-                                        <rect key="frame" x="0.0" y="51" width="354" height="34"/>
+                                        <rect key="frame" x="0.0" y="52" width="354" height="34"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="username"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pDV-qn-viz">
-                                        <rect key="frame" x="0.0" y="110" width="354" height="34"/>
+                                        <rect key="frame" x="0.0" y="110.5" width="354" height="34"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
@@ -109,14 +109,39 @@
                     <view key="view" contentMode="scaleToFill" id="Mum-JH-nCe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Safe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yPa-vu-Wcv">
+                                <rect key="frame" x="30" y="74" width="128.5" height="45.5"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="33"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vxy-Io-obb">
+                                <rect key="frame" x="339" y="78" width="51" height="38"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="20" weight="medium"/>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="addTapped:" destination="OUV-XI-tvy" eventType="touchUpInside" id="r2A-mu-Ltq"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Y06-s4-GtG"/>
                         <color key="backgroundColor" red="0.18944453980000001" green="0.18944453980000001" blue="0.18944453980000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Vxy-Io-obb" firstAttribute="top" secondItem="Y06-s4-GtG" secondAttribute="top" constant="34" id="6EZ-Ww-VLL"/>
+                            <constraint firstItem="Y06-s4-GtG" firstAttribute="trailing" secondItem="Vxy-Io-obb" secondAttribute="trailing" constant="24" id="8BB-FD-vgF"/>
+                            <constraint firstItem="yPa-vu-Wcv" firstAttribute="leading" secondItem="Y06-s4-GtG" secondAttribute="leading" constant="30" id="SGM-d3-yQZ"/>
+                            <constraint firstItem="yPa-vu-Wcv" firstAttribute="top" secondItem="Y06-s4-GtG" secondAttribute="top" constant="30" id="ggb-VE-xem"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="My Safe" image="tray.full" catalog="system" id="8XB-ks-rku"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TRR-Ix-I9L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1430" y="100"/>
+            <point key="canvasLocation" x="1428.985507246377" y="99.776785714285708"/>
         </scene>
         <!--Shared View Controller-->
         <scene sceneID="lO9-UH-GJ3">
@@ -125,8 +150,20 @@
                     <view key="view" contentMode="scaleToFill" id="VoX-Wn-QDP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shared" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhC-J9-IdA">
+                                <rect key="frame" x="30" y="74" width="112.5" height="45.5"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="33"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="fdz-Vo-C0i"/>
                         <color key="backgroundColor" red="0.18944453980000001" green="0.18944453980000001" blue="0.18944453980000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="nhC-J9-IdA" firstAttribute="top" secondItem="fdz-Vo-C0i" secondAttribute="top" constant="30" id="9bs-tb-o6p"/>
+                            <constraint firstItem="nhC-J9-IdA" firstAttribute="leading" secondItem="fdz-Vo-C0i" secondAttribute="leading" constant="30" id="cx7-D3-afw"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Shared" image="tray.and.arrow.down" catalog="system" id="hfd-Ko-uDv"/>
                 </viewController>
@@ -141,8 +178,20 @@
                     <view key="view" contentMode="scaleToFill" id="k77-ZO-pzo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Account" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mFj-Vm-slh">
+                                <rect key="frame" x="30" y="74" width="189" height="45.5"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="33"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="7bI-3E-rQx"/>
                         <color key="backgroundColor" red="0.18944453980000001" green="0.18944453980000001" blue="0.18944453980000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="mFj-Vm-slh" firstAttribute="top" secondItem="7bI-3E-rQx" secondAttribute="top" constant="30" id="O0u-ud-DfZ"/>
+                            <constraint firstItem="mFj-Vm-slh" firstAttribute="leading" secondItem="7bI-3E-rQx" secondAttribute="leading" constant="30" id="hnL-Ec-HuB"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="My Account" image="person" catalog="system" id="Zdv-h2-18s"/>
                 </viewController>
@@ -153,6 +202,7 @@
     </scenes>
     <resources>
         <image name="person" catalog="system" width="128" height="117"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="tray.and.arrow.down" catalog="system" width="128" height="109"/>
         <image name="tray.full" catalog="system" width="128" height="88"/>
         <systemColor name="systemGray5Color">
