@@ -11,6 +11,7 @@
 		2E1EE3292805E0EB00B86781 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1EE3282805E0EB00B86781 /* MyAccountViewController.swift */; };
 		2E35391227DEBDD2004653CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E35391127DEBDD2004653CD /* GoogleService-Info.plist */; };
 		2E4A59D227EE660E0060401A /* MySafeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4A59D127EE660E0060401A /* MySafeViewController.swift */; };
+		2E72A7F82807806500E8110F /* DataHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E72A7F72807806500E8110F /* DataHolder.swift */; };
 		2E99950B27D507D20047D135 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99950A27D507D20047D135 /* AppDelegate.swift */; };
 		2E99950D27D507D20047D135 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99950C27D507D20047D135 /* SceneDelegate.swift */; };
 		2E99951227D507D20047D135 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E99951027D507D20047D135 /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 		2E1EE3282805E0EB00B86781 /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
 		2E35391127DEBDD2004653CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2E4A59D127EE660E0060401A /* MySafeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySafeViewController.swift; sourceTree = "<group>"; };
+		2E72A7F72807806500E8110F /* DataHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHolder.swift; sourceTree = "<group>"; };
 		2E99950727D507D20047D135 /* GPS Safe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GPS Safe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E99950A27D507D20047D135 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; usesTabs = 1; };
 		2E99950C27D507D20047D135 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				2E1EE3262805E0C600B86781 /* SharedViewController.swift */,
 				2E1EE3282805E0EB00B86781 /* MyAccountViewController.swift */,
 				2E4A59D127EE660E0060401A /* MySafeViewController.swift */,
+				2E72A7F72807806500E8110F /* DataHolder.swift */,
 				2E99953D27DE93F70047D135 /* LoginViewController.swift */,
 				2E99951627D507D30047D135 /* Assets.xcassets */,
 				2E99951827D507D30047D135 /* LaunchScreen.storyboard */,
@@ -222,6 +225,7 @@
 			files = (
 				2E99953E27DE93F70047D135 /* LoginViewController.swift in Sources */,
 				2E1EE3272805E0C600B86781 /* SharedViewController.swift in Sources */,
+				2E72A7F82807806500E8110F /* DataHolder.swift in Sources */,
 				2E1EE3292805E0EB00B86781 /* MyAccountViewController.swift in Sources */,
 				2E4A59D227EE660E0060401A /* MySafeViewController.swift in Sources */,
 				2E99950B27D507D20047D135 /* AppDelegate.swift in Sources */,
