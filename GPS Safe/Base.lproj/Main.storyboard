@@ -19,7 +19,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="Niz-gP-eIN">
                                 <rect key="frame" x="30" y="248" width="354" height="200"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login or Sign up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mra-q3-AKU">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log in or Sign up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mra-q3-AKU">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="27.5"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -51,7 +51,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dkK-2p-Kmc">
                                                 <rect key="frame" x="197" y="0.0" width="157" height="31"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" title="Login"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Log in"/>
                                                 <connections>
                                                     <action selector="loginTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KyO-Rx-3Dg"/>
                                                 </connections>
@@ -209,19 +209,43 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username: abcd" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KHO-Jy-SeL" userLabel="Current User">
+                                <rect key="frame" x="135.5" y="384.5" width="143" height="26"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="19"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5T4-nF-gjj">
+                                <rect key="frame" x="166" y="430.5" width="82" height="35"/>
+                                <color key="tintColor" systemColor="systemRedColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Log out">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="logout:" destination="3fT-Yy-95P" eventType="touchUpInside" id="ZNO-KI-CzU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7bI-3E-rQx"/>
                         <color key="backgroundColor" red="0.18944453980000001" green="0.18944453980000001" blue="0.18944453980000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="5T4-nF-gjj" firstAttribute="centerX" secondItem="k77-ZO-pzo" secondAttribute="centerX" id="IPj-3o-8wa"/>
                             <constraint firstItem="mFj-Vm-slh" firstAttribute="top" secondItem="7bI-3E-rQx" secondAttribute="top" constant="30" id="O0u-ud-DfZ"/>
+                            <constraint firstItem="KHO-Jy-SeL" firstAttribute="centerX" secondItem="k77-ZO-pzo" secondAttribute="centerX" id="RyF-Dd-VKu"/>
                             <constraint firstItem="mFj-Vm-slh" firstAttribute="leading" secondItem="7bI-3E-rQx" secondAttribute="leading" constant="30" id="hnL-Ec-HuB"/>
+                            <constraint firstItem="5T4-nF-gjj" firstAttribute="centerY" secondItem="k77-ZO-pzo" secondAttribute="centerY" id="tss-7w-7cv"/>
+                            <constraint firstItem="5T4-nF-gjj" firstAttribute="top" secondItem="KHO-Jy-SeL" secondAttribute="bottom" constant="20" id="uSG-oR-g4C"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="My Account" image="person" catalog="system" id="Zdv-h2-18s"/>
+                    <connections>
+                        <outlet property="currentUser" destination="KHO-Jy-SeL" id="rWh-pS-K51"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J3Z-LK-1jC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2865" y="100"/>
+            <point key="canvasLocation" x="2862.3188405797105" y="99.776785714285708"/>
         </scene>
     </scenes>
     <resources>
@@ -231,6 +255,9 @@
         <image name="tray.full" catalog="system" width="128" height="88"/>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
