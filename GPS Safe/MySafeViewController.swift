@@ -16,8 +16,11 @@ class MySafeViewController: UIViewController {
 	private let dataCollection = Database.database().reference(withPath: "Data")
 	private let publicKeysCollection = Database.database().reference(withPath: "Public Keys")
 	
-	//Shows user's data in a table
+	//Shows a list of user's data
 	@IBOutlet var tableView: UITableView!
+	
+	//Controls refreshing of table view
+	private let refreshControl = UIRefreshControl()
 	
 	//Stores a copy of the user's data
 	private var dataArray: [DataHolder] = []
@@ -25,8 +28,15 @@ class MySafeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+		//Set up table view
 		tableView.delegate = self
 		tableView.dataSource = self
+		
+		//Set up refresh control
+		tableView.refreshControl = refreshControl
+		tableView.backgroundView = refreshControl
+		refreshControl.addTarget(self, action: #selector(refreshTable(_:)), for: .valueChanged)
+		refreshControl.tintColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
 		
 		fetchData()
     }
@@ -64,7 +74,13 @@ class MySafeViewController: UIViewController {
 			}
 			self.dataArray = fetchedDataArray
 			self.tableView.reloadData()
+			self.refreshControl.endRefreshing()
 		})
+	}
+	
+	//Objective-C function to refresh the table view. Used for refreshControl.
+	@objc private func refreshTable(_ sender: Any) {
+		fetchData()
 	}
 	
 	//Returns array with user's data
