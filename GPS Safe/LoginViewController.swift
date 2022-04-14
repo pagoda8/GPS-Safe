@@ -2,7 +2,7 @@
 //  LoginViewController.swift
 //  GPS Safe
 //
-//  Created by Wojtek on 13/03/2022.
+//  Controls Login screen
 //
 
 import UIKit
@@ -11,29 +11,32 @@ import CryptoKit
 
 class LoginViewController: UIViewController {
 	
+	//Reference to Users collection in database
 	private let usersCollection = Database.database().reference(withPath: "Users")
 	
+	//Text fields to input username and password
 	@IBOutlet weak var username: UITextField!
 	@IBOutlet weak var password: UITextField!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
-		// Do any additional setup after loading the view.
 	}
 	
+	//When sign up button is tapped
 	@IBAction func signupTapped(_ sender: Any) {
 		if (validFields()) {
 			signup()
 		}
 	}
 	
+	//When log in button is tapped
 	@IBAction func loginTapped(_ sender: Any) {
 		if (validFields()) {
 			login()
 		}
 	}
 	
+	//Returns true if fields are not empty, otherwise false and shows alert.
 	private func validFields() -> Bool {
 		if (username.text?.isEmpty == true) {
 			showAlert(title: "Username missing", message: "Please input a username")
@@ -48,6 +51,7 @@ class LoginViewController: UIViewController {
 		return true
 	}
 	
+	//Creates account for user
 	private func signup() {
 		let usernameHashString = hash(input: username.text!)
 		let passwordHashString = hash(input: password.text!)
@@ -64,6 +68,7 @@ class LoginViewController: UIViewController {
 		})
 	}
 	
+	//Logs in the user
 	private func login() {
 		let usernameHashString = hash(input: username.text!)
 		let passwordHashString = hash(input: password.text!)
@@ -74,8 +79,9 @@ class LoginViewController: UIViewController {
 				let passwordSnap = snapshot.childSnapshot(forPath: usernameHashString).childSnapshot(forPath: "password")
 				//Password correct
 				if (passwordSnap.value as! String == passwordHashString) {
-					AppDelegate.get().currentUser = self.username.text!
+					AppDelegate.get().setCurrentUser(self.username.text!)
 					
+					//Go to My Safe screen (first tab)
 					let vc = self.storyboard?.instantiateViewController(withIdentifier: "tabController")
 					vc?.modalPresentationStyle = .overFullScreen
 					self.present(vc!, animated: true)
@@ -90,6 +96,7 @@ class LoginViewController: UIViewController {
 		})
 	}
 	
+	//Returns a SHA256 hash of a string
 	private func hash(input: String) -> String {
 		let data = Data(input.utf8)
 		let hash = SHA256.hash(data: data)
@@ -97,6 +104,7 @@ class LoginViewController: UIViewController {
 		return string;
 	}
 	
+	//Shows alert with given title and message
 	private func showAlert(title: String, message: String) {
 		let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
 		alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))

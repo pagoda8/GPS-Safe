@@ -2,26 +2,27 @@
 //  MyAccountViewController.swift
 //  GPS Safe
 //
-//  Created by Wojtek on 12/04/2022.
+//	Controls My Account screen
 //
 
 import UIKit
 
 class MyAccountViewController: UIViewController {
 	
+	//Label showing username
 	@IBOutlet weak var currentUser: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		currentUser.text = "Username: " + AppDelegate.get().currentUser
-
-        // Do any additional setup after loading the view.
+		currentUser.text = "Username: " + AppDelegate.get().getCurrentUser()
     }
 	
+	//When log out button is tapped
 	@IBAction func logout(_ sender: Any) {
-		AppDelegate.get().currentUser = ""
+		AppDelegate.get().setCurrentUser("")
 		
+		//Go to login screen
 		let vc = self.storyboard?.instantiateViewController(withIdentifier: "login")
 		vc?.modalPresentationStyle = .overFullScreen
 		self.present(vc!, animated: true)

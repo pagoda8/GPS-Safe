@@ -2,7 +2,6 @@
 //  AppDelegate.swift
 //  GPS Safe
 //
-//  Created by Wojtek on 06/03/2022.
 //
 
 import UIKit
@@ -12,7 +11,8 @@ import FirebaseAnalytics
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 	
-	public var currentUser = String()
+	//Username of logged in user in plain text
+	private var currentUser = String()
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
@@ -34,7 +34,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// Use this method to release any resources that were specific to the discarded scenes, as they will not return.
 	}
 	
-	//Return reference to AppDelegate
+	//Returns username of logged in user
+	func getCurrentUser() -> String {
+		return currentUser
+	}
+	
+	//Sets current user
+	func setCurrentUser(_ username: String) {
+		self.currentUser = username
+	}
+	
+	//Returns reference to AppDelegate
 	static func get() -> AppDelegate {
 		return UIApplication.shared.delegate as! AppDelegate
 	}

@@ -2,7 +2,7 @@
 //  DataHolder.swift
 //  GPS Safe
 //
-//  Created by Wojtek on 13/04/2022.
+//	Defines a data type to store user's data
 //
 
 import UIKit
