@@ -11,7 +11,7 @@ import CryptoKit
 
 class LoginViewController: UIViewController {
 	
-	private let users = Database.database().reference(withPath: "Users")
+	private let usersCollection = Database.database().reference(withPath: "Users")
 	
 	@IBOutlet weak var username: UITextField!
 	@IBOutlet weak var password: UITextField!
@@ -52,10 +52,10 @@ class LoginViewController: UIViewController {
 		let usernameHashString = hash(input: username.text!)
 		let passwordHashString = hash(input: password.text!)
 		
-		users.observeSingleEvent(of: .value, with: { snapshot in
+		usersCollection.observeSingleEvent(of: .value, with: { snapshot in
 			//User doesn't exist
 			if (!snapshot.hasChild(usernameHashString)) {
-				self.users.child(usernameHashString).child("password").setValue(passwordHashString)
+				self.usersCollection.child(usernameHashString).child("password").setValue(passwordHashString)
 				self.showAlert(title: "Success", message: "Account was created")
 			} //User exists
 			else {
@@ -68,12 +68,12 @@ class LoginViewController: UIViewController {
 		let usernameHashString = hash(input: username.text!)
 		let passwordHashString = hash(input: password.text!)
 		
-		users.observeSingleEvent(of: .value, with: {snapshot in
+		usersCollection.observeSingleEvent(of: .value, with: {snapshot in
 			//User exists
 			if (snapshot.hasChild(usernameHashString)) {
-				let password = snapshot.childSnapshot(forPath: usernameHashString).childSnapshot(forPath: "password")
+				let passwordSnap = snapshot.childSnapshot(forPath: usernameHashString).childSnapshot(forPath: "password")
 				//Password correct
-				if (password.value as! String == passwordHashString) {
+				if (passwordSnap.value as! String == passwordHashString) {
 					AppDelegate.get().currentUser = self.username.text!
 					
 					let vc = self.storyboard?.instantiateViewController(withIdentifier: "tabController")
