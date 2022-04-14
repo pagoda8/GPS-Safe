@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 public class DataHolder {
 	private var user: String
@@ -26,6 +27,49 @@ public class DataHolder {
 		self.name = name
 		self.password = password
 		self.boolPassword = boolPassword
+	}
+	
+	//Inserts all the data of the object into the database
+	//Performs check to prevent overriding
+	public func pushToDB() {
+		let dataCollection = Database.database().reference(withPath: "Data")
+		var exists = false
+		
+		//Used to make sure inserting data into database is done after performing check
+		let group = DispatchGroup()
+		
+		//Check if [user, location, data] node already exists
+		group.enter()
+		dataCollection.observeSingleEvent(of: .value, with: { snapshot in
+			if (snapshot.hasChild(self.user)) {
+				group.enter()
+				dataCollection.child(self.user).observeSingleEvent(of: .value, with: { snapshot in
+					if (snapshot.hasChild(self.location)) {
+						group.enter()
+						dataCollection.child(self.user).child(self.location).observeSingleEvent(of: .value, with: { snapshot in
+							if (snapshot.hasChild(self.data)) {
+								exists = true
+							}
+							group.leave()
+						})
+					}
+					group.leave()
+				})
+			}
+			group.leave()
+		})
+		
+		//Executed when check is complete
+		group.notify(queue: .main) {
+			if (!exists) {
+				let dataNode = dataCollection.child(self.user).child(self.location).child(self.data)
+				dataNode.child("name").setValue(self.name)
+				dataNode.child("isOwner").setValue(self.boolOwner)
+				dataNode.child("isText").setValue(self.boolText)
+				dataNode.child("hasPassword").setValue(self.boolPassword)
+				dataNode.child("password").setValue(self.password)
+			}
+		}
 	}
 	
 	public func getUser() -> String {

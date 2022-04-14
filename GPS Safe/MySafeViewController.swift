@@ -43,7 +43,9 @@ class MySafeViewController: UIViewController {
 
 	//When (+) button is tapped
 	@IBAction func addTapped(_ sender: Any) {
+		let a = DataHolder(user: "user", location: "location", data: "data", boolOwner: true, boolText: true, name: "test123", password: "", boolPassword: false)
 		
+		a.pushToDB()
 	}
 	
 	//Gets user's data from database and adds to dataArray. Reloads table view.
@@ -55,18 +57,18 @@ class MySafeViewController: UIViewController {
 			if (snapshot.hasChild(usernameHash)) {
 				let userSnap = snapshot.childSnapshot(forPath: usernameHash)
 				//Loop over locations
-				for case let location as DataSnapshot in userSnap.children {
+				for case let locationSnap as DataSnapshot in userSnap.children {
 					//Loop over data
-					for case let data as DataSnapshot in location.children {
-						let isOwner = data.childSnapshot(forPath: "isOwner").value as! Bool
+					for case let dataSnap as DataSnapshot in locationSnap.children {
+						let isOwner = dataSnap.childSnapshot(forPath: "isOwner").value as! Bool
 						
 						if (isOwner) {
-							let name = data.childSnapshot(forPath: "name").value as! String
-							let isText = data.childSnapshot(forPath: "isText").value as! Bool
-							let hasPassword = data.childSnapshot(forPath: "hasPassword").value as! Bool
-							let password = data.childSnapshot(forPath: "password").value as! String
+							let name = dataSnap.childSnapshot(forPath: "name").value as! String
+							let isText = dataSnap.childSnapshot(forPath: "isText").value as! Bool
+							let hasPassword = dataSnap.childSnapshot(forPath: "hasPassword").value as! Bool
+							let password = dataSnap.childSnapshot(forPath: "password").value as! String
 							
-							let dataHolder = DataHolder(user: usernameHash, location: location.key, data: data.key, boolOwner: isOwner, boolText: isText, name: name, password: password, boolPassword: hasPassword)
+							let dataHolder = DataHolder(user: usernameHash, location: locationSnap.key, data: dataSnap.key, boolOwner: isOwner, boolText: isText, name: name, password: password, boolPassword: hasPassword)
 							fetchedDataArray.append(dataHolder)
 						}
 					}
