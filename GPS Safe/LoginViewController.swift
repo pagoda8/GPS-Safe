@@ -7,7 +7,6 @@
 
 import UIKit
 import FirebaseDatabase
-import CryptoKit
 
 class LoginViewController: UIViewController {
 	
@@ -53,8 +52,8 @@ class LoginViewController: UIViewController {
 	
 	//Creates account for user
 	private func signup() {
-		let usernameHashString = hash(input: username.text!)
-		let passwordHashString = hash(input: password.text!)
+		let usernameHashString = Crypto.hash(input: username.text!)
+		let passwordHashString = Crypto.hash(input: password.text!)
 		
 		usersCollection.observeSingleEvent(of: .value, with: { snapshot in
 			//User doesn't exist
@@ -70,8 +69,8 @@ class LoginViewController: UIViewController {
 	
 	//Logs in the user
 	private func login() {
-		let usernameHashString = hash(input: username.text!)
-		let passwordHashString = hash(input: password.text!)
+		let usernameHashString = Crypto.hash(input: username.text!)
+		let passwordHashString = Crypto.hash(input: password.text!)
 		
 		usersCollection.observeSingleEvent(of: .value, with: {snapshot in
 			//User exists
@@ -96,19 +95,11 @@ class LoginViewController: UIViewController {
 		})
 	}
 	
-	//Returns a SHA256 hash of a string
-	private func hash(input: String) -> String {
-		let data = Data(input.utf8)
-		let hash = SHA256.hash(data: data)
-		let string = hash.compactMap { String(format: "%02x", $0) }.joined()
-		return string;
-	}
-	
 	//Shows alert with given title and message
 	private func showAlert(title: String, message: String) {
-		let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-		alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-		self.present(alert, animated: true, completion: nil)
+		let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+		alert.addAction(UIAlertAction(title: "OK", style: .default))
+		self.present(alert, animated: true)
 	}
 	
 }

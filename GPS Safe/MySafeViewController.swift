@@ -7,14 +7,11 @@
 
 import UIKit
 import FirebaseDatabase
-import CryptoKit
 
 class MySafeViewController: UIViewController {
 	
-	//References to collections in the database
-	private let usersCollection = Database.database().reference(withPath: "Users")
+	//Reference to Data collection in the database
 	private let dataCollection = Database.database().reference(withPath: "Data")
-	private let publicKeysCollection = Database.database().reference(withPath: "Public Keys")
 	
 	//Shows a list of user's data
 	@IBOutlet var tableView: UITableView!
@@ -43,14 +40,31 @@ class MySafeViewController: UIViewController {
 
 	//When (+) button is tapped
 	@IBAction func addTapped(_ sender: Any) {
-		let a = DataHolder(user: "user", location: "location", data: "data", boolOwner: true, boolText: true, name: "test123", password: "", boolPassword: false)
-		
-		a.pushToDB()
+		//Show options to select type of data to encrypt
+		let actionSheet = UIAlertController(title: "Add data to your safe", message: "Select the type of data you want to encrypt", preferredStyle: .actionSheet)
+		actionSheet.addAction(UIAlertAction(title: "Text", style: .default, handler: { _ in self.textSelected() }))
+		actionSheet.addAction(UIAlertAction(title: "Image", style: .default, handler: { _ in self.imageSelected() }))
+		actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+		self.present(actionSheet, animated: true)
+	}
+	
+	//Go to text encryption screen
+	private func textSelected() {
+		let vc = self.storyboard?.instantiateViewController(withIdentifier: "encryptText")
+		vc?.modalPresentationStyle = .overFullScreen
+		self.present(vc!, animated: true)
+	}
+	
+	//Go to image encryption screen
+	private func imageSelected() {
+		let vc = self.storyboard?.instantiateViewController(withIdentifier: "encryptImage")
+		vc?.modalPresentationStyle = .overFullScreen
+		self.present(vc!, animated: true)
 	}
 	
 	//Gets user's data from database and adds to dataArray. Reloads table view.
 	private func fetchData() {
-		let usernameHash = hash(input: AppDelegate.get().getCurrentUser())
+		let usernameHash = Crypto.hash(input: AppDelegate.get().getCurrentUser())
 		var fetchedDataArray: [DataHolder] = []
 		
 		dataCollection.observeSingleEvent(of: .value, with: {snapshot in
@@ -90,19 +104,11 @@ class MySafeViewController: UIViewController {
 		return dataArray
 	}
 	
-	//Returns a SHA256 hash of a string
-	private func hash(input: String) -> String {
-		let data = Data(input.utf8)
-		let hash = SHA256.hash(data: data)
-		let string = hash.compactMap { String(format: "%02x", $0) }.joined()
-		return string;
-	}
-	
 	//Shows alert with given title and message
 	private func showAlert(title: String, message: String) {
-		let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-		alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-		self.present(alert, animated: true, completion: nil)
+		let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+		alert.addAction(UIAlertAction(title: "OK", style: .default))
+		self.present(alert, animated: true)
 	}
 	
 }
@@ -111,6 +117,7 @@ extension UIViewController: UITableViewDelegate {
 	//When row in table is tapped
 	public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		print("Row tapped")
+		//Call function to decrypt. Pass index
 		tableView.deselectRow(at: indexPath, animated: true)
 	}
 }
