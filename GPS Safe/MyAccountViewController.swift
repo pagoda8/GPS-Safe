@@ -15,7 +15,7 @@ class MyAccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		currentUser.text = "Username: " + AppDelegate.get().getCurrentUser()
+		currentUser.text = AppDelegate.get().getCurrentUser()
     }
 	
 	//When log out button is tapped
