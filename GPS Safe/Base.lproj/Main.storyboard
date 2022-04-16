@@ -79,7 +79,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="100"/>
+            <point key="canvasLocation" x="117" y="100"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="eMm-ZJ-TvS">
@@ -165,7 +165,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TRR-Ix-I9L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1428.985507246377" y="99.776785714285708"/>
+            <point key="canvasLocation" x="1436" y="100"/>
         </scene>
         <!--Encrypt Text View Controller-->
         <scene sceneID="czo-IU-sCR">
@@ -175,17 +175,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxy-zX-913">
-                                <rect key="frame" x="5" y="59" width="102" height="36.5"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system" title=" Cancel">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="19" weight="medium"/>
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="18"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="cancelTapped:" destination="K1c-Jt-vlf" eventType="touchUpInside" id="ImU-Lc-3Ox"/>
-                                </connections>
-                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="bSw-KT-8Nj">
                                 <rect key="frame" x="30" y="253" width="354" height="250"/>
                                 <subviews>
@@ -213,19 +202,33 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You will only be able to access this data from the location that you are at right now." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZjP-6m-wLi">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You will only be able to access this data from the location at which you are right now." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZjP-6m-wLi">
                                         <rect key="frame" x="0.0" y="174.5" width="354" height="33.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="itr-j2-Mc7">
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="bbP-Rz-368">
                                         <rect key="frame" x="0.0" y="219" width="354" height="31"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="ENCRYPT"/>
-                                        <connections>
-                                            <action selector="encryptTapped:" destination="K1c-Jt-vlf" eventType="touchUpInside" id="EIm-46-myX"/>
-                                        </connections>
-                                    </button>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxy-zX-913">
+                                                <rect key="frame" x="0.0" y="0.0" width="157" height="31"/>
+                                                <color key="tintColor" systemColor="systemRedColor"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="gray" title="Cancel"/>
+                                                <connections>
+                                                    <action selector="cancelTapped:" destination="K1c-Jt-vlf" eventType="touchUpInside" id="ImU-Lc-3Ox"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="itr-j2-Mc7">
+                                                <rect key="frame" x="197" y="0.0" width="157" height="31"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Encrypt"/>
+                                                <connections>
+                                                    <action selector="encryptTapped:" destination="K1c-Jt-vlf" eventType="touchUpInside" id="EIm-46-myX"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="t0d-2R-wdY"/>
@@ -236,9 +239,7 @@
                         <color key="backgroundColor" red="0.18944453980000001" green="0.18944453980000001" blue="0.18944453980000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="bSw-KT-8Nj" firstAttribute="centerY" secondItem="jfB-oa-jAk" secondAttribute="centerY" constant="-70" id="MFi-Kq-fQk"/>
-                            <constraint firstItem="pxy-zX-913" firstAttribute="top" secondItem="OeC-br-jhX" secondAttribute="top" constant="15" id="Uy8-GI-Ufa"/>
                             <constraint firstItem="bSw-KT-8Nj" firstAttribute="leading" secondItem="OeC-br-jhX" secondAttribute="leading" constant="30" id="fHS-J0-ea4"/>
-                            <constraint firstItem="pxy-zX-913" firstAttribute="leading" secondItem="OeC-br-jhX" secondAttribute="leading" constant="5" id="tPu-EX-Sij"/>
                             <constraint firstItem="OeC-br-jhX" firstAttribute="trailing" secondItem="bSw-KT-8Nj" secondAttribute="trailing" constant="30" id="yw0-Hw-7gL"/>
                         </constraints>
                     </view>
@@ -250,7 +251,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k8N-Lg-biL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1095.6521739130435" y="758.70535714285711"/>
+            <point key="canvasLocation" x="1110" y="745"/>
         </scene>
         <!--Encrypt Image View Controller-->
         <scene sceneID="iFM-Lb-9z0">
@@ -260,13 +261,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QmN-y4-NpQ">
-                                <rect key="frame" x="5" y="59" width="102" height="37"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QmN-y4-NpQ">
+                                <rect key="frame" x="111" y="405" width="68.5" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="systemRedColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system" title=" Cancel">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="19" weight="medium"/>
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="18"/>
-                                </buttonConfiguration>
+                                <buttonConfiguration key="configuration" style="gray" title="Cancel"/>
                                 <connections>
                                     <action selector="cancelTapped:" destination="AFN-ql-tVG" eventType="touchUpInside" id="0Lp-ze-i9L"/>
                                 </connections>
@@ -274,15 +274,11 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="TeA-9j-ydH"/>
                         <color key="backgroundColor" red="0.18944453980000001" green="0.18944453980000001" blue="0.18944453980000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="QmN-y4-NpQ" firstAttribute="leading" secondItem="TeA-9j-ydH" secondAttribute="leading" constant="5" id="KDH-gU-bdd"/>
-                            <constraint firstItem="QmN-y4-NpQ" firstAttribute="top" secondItem="TeA-9j-ydH" secondAttribute="top" constant="15" id="mD3-Bg-pJW"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L9n-FT-ufh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1757" y="759"/>
+            <point key="canvasLocation" x="1758" y="745"/>
         </scene>
         <!--Shared View Controller-->
         <scene sceneID="lO9-UH-GJ3">
@@ -310,7 +306,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vWP-MM-VHL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2132" y="101"/>
+            <point key="canvasLocation" x="2091" y="100"/>
         </scene>
         <!--My Account View Controller-->
         <scene sceneID="GoZ-Ya-zeu">
@@ -327,8 +323,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="abcd" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KHO-Jy-SeL" userLabel="Current User">
-                                <rect key="frame" x="330.5" y="169.5" width="53.5" height="31.5"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="23"/>
+                                <rect key="frame" x="333" y="169.5" width="51" height="30.5"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -347,8 +343,8 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKT-07-29D">
-                                <rect key="frame" x="30" y="169.5" width="114" height="32"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="23"/>
+                                <rect key="frame" x="30" y="169.5" width="109.5" height="30.5"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -373,11 +369,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J3Z-LK-1jC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2862.3188405797105" y="99.776785714285708"/>
+            <point key="canvasLocation" x="2745" y="100"/>
         </scene>
     </scenes>
     <resources>
-        <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="tray.and.arrow.down" catalog="system" width="128" height="109"/>
