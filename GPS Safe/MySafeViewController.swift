@@ -50,16 +50,12 @@ class MySafeViewController: UIViewController {
 	
 	//Go to text encryption screen
 	private func textSelected() {
-		let vc = self.storyboard?.instantiateViewController(withIdentifier: "encryptText")
-		vc?.modalPresentationStyle = .overFullScreen
-		self.present(vc!, animated: true)
+		showStoryboard(identifier: "encryptText")
 	}
 	
 	//Go to image encryption screen
 	private func imageSelected() {
-		let vc = self.storyboard?.instantiateViewController(withIdentifier: "encryptImage")
-		vc?.modalPresentationStyle = .overFullScreen
-		self.present(vc!, animated: true)
+		showStoryboard(identifier: "encryptImage")
 	}
 	
 	//Gets user's data from database and adds to dataArray. Reloads table view.
@@ -111,6 +107,12 @@ class MySafeViewController: UIViewController {
 		self.present(alert, animated: true)
 	}
 	
+	//Shows storyboard with given identifier
+	private func showStoryboard(identifier: String) {
+		let vc = self.storyboard?.instantiateViewController(withIdentifier: identifier)
+		vc?.modalPresentationStyle = .overFullScreen
+		self.present(vc!, animated: true)
+	}
 }
 
 extension UIViewController: UITableViewDelegate {

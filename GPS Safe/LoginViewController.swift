@@ -10,8 +10,9 @@ import FirebaseDatabase
 
 class LoginViewController: UIViewController {
 	
-	//Reference to Users collection in database
+	//References to collections in database
 	private let usersCollection = Database.database().reference(withPath: "Users")
+	private let publicKeyCollection = Database.database().reference(withPath: "PublicKeys")
 	
 	//Text fields to input username and password
 	@IBOutlet weak var username: UITextField!
@@ -58,8 +59,14 @@ class LoginViewController: UIViewController {
 		usersCollection.observeSingleEvent(of: .value, with: { snapshot in
 			//User doesn't exist
 			if (!snapshot.hasChild(usernameHashString)) {
-				self.usersCollection.child(usernameHashString).child("password").setValue(passwordHashString)
-				self.showAlert(title: "Success", message: "Account was created")
+				do {
+					let keys = try Crypto.generateKeys(username: self.username.text!)
+					
+					self.usersCollection.child(usernameHashString).child("password").setValue(passwordHashString)
+					self.showAlert(title: "Success", message: "Account was created")
+				} catch {
+					self.showAlert(title: "Error", message: "Could not create account")
+				}
 			} //User exists
 			else {
 				self.showAlert(title: "Username taken", message: "Choose a different username")
@@ -72,18 +79,16 @@ class LoginViewController: UIViewController {
 		let usernameHashString = Crypto.hash(input: username.text!)
 		let passwordHashString = Crypto.hash(input: password.text!)
 		
-		usersCollection.observeSingleEvent(of: .value, with: {snapshot in
+		usersCollection.observeSingleEvent(of: .value, with: { snapshot in
 			//User exists
 			if (snapshot.hasChild(usernameHashString)) {
 				let passwordSnap = snapshot.childSnapshot(forPath: usernameHashString).childSnapshot(forPath: "password")
 				//Password correct
 				if (passwordSnap.value as! String == passwordHashString) {
+					//Set current user of app
 					AppDelegate.get().setCurrentUser(self.username.text!)
-					
 					//Go to My Safe screen (first tab)
-					let vc = self.storyboard?.instantiateViewController(withIdentifier: "tabController")
-					vc?.modalPresentationStyle = .overFullScreen
-					self.present(vc!, animated: true)
+					self.showStoryboard(identifier: "tabController")
 				} //Password incorrect
 				else {
 					self.showAlert(title: "Invalid password", message: "Try again")
@@ -102,4 +107,10 @@ class LoginViewController: UIViewController {
 		self.present(alert, animated: true)
 	}
 	
+	//Shows storyboard with given identifier
+	private func showStoryboard(identifier: String) {
+		let vc = self.storyboard?.instantiateViewController(withIdentifier: identifier)
+		vc?.modalPresentationStyle = .overFullScreen
+		self.present(vc!, animated: true)
+	}
 }
