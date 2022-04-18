@@ -12,7 +12,7 @@ class LoginViewController: UIViewController {
 	
 	//References to collections in database
 	private let usersCollection = Database.database().reference(withPath: "Users")
-	private let publicKeyCollection = Database.database().reference(withPath: "PublicKeys")
+	private let publicKeysCollection = Database.database().reference(withPath: "PublicKeys")
 	
 	//Text fields to input username and password
 	@IBOutlet weak var username: UITextField!
@@ -60,11 +60,25 @@ class LoginViewController: UIViewController {
 			//User doesn't exist
 			if (!snapshot.hasChild(usernameHashString)) {
 				do {
+					//Generate keys for user
 					let keys = try Crypto.generateKeys(username: self.username.text!)
 					
-					self.usersCollection.child(usernameHashString).child("password").setValue(passwordHashString)
-					self.showAlert(title: "Success", message: "Account was created")
-				} catch {
+					//Read and convert public key to string
+					var error: Unmanaged<CFError>?
+					if let cfdata = SecKeyCopyExternalRepresentation(keys["public"]!, &error) {
+						let data = cfdata as Data
+						let publicKeyString = data.base64EncodedString()
+						
+						//Push to database
+						self.publicKeysCollection.child(usernameHashString).child("key").setValue(publicKeyString)
+						self.usersCollection.child(usernameHashString).child("password").setValue(passwordHashString)
+						self.showAlert(title: "Success", message: "Account was created")
+					} //Public key could not be read
+					else {
+						self.showAlert(title: "Error", message: "Could not create account")
+					}
+				} //Keys could not be generated
+				catch {
 					self.showAlert(title: "Error", message: "Could not create account")
 				}
 			} //User exists

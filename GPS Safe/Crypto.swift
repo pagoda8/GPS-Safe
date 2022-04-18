@@ -18,7 +18,7 @@ public class Crypto {
 		return string
 	}
 	
-	//Generate and return public and private key, given username as a seed value.
+	//Generate and return public and private key
 	//Throws error when unsuccessful
 	public static func generateKeys(username: String) throws -> Dictionary<String, SecKey> {
 		let tag = ("com.pagoda8.GPS-Safe." + username).data(using: .utf8)
