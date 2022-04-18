@@ -16,6 +16,10 @@ class EncryptTextViewController: UIViewController {
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
+		
+		//Tap anywhere to hide keyboard
+		let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+		view.addGestureRecognizer(tap)
     }
     
 	//When cancel button is tapped

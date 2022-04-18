@@ -323,7 +323,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="abcd" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KHO-Jy-SeL" userLabel="Current User">
-                                <rect key="frame" x="333" y="169.5" width="51" height="30.5"/>
+                                <rect key="frame" x="323" y="169.5" width="51" height="30.5"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -335,7 +335,7 @@
                                 </constraints>
                                 <color key="tintColor" systemColor="systemRedColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="Log out">
+                                <buttonConfiguration key="configuration" style="gray" title="Log out" cornerStyle="capsule">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -343,8 +343,8 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKT-07-29D">
-                                <rect key="frame" x="30" y="169.5" width="109.5" height="30.5"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="22"/>
+                                <rect key="frame" x="40" y="169.5" width="110" height="30.5"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -352,12 +352,12 @@
                         <viewLayoutGuide key="safeArea" id="7bI-3E-rQx"/>
                         <color key="backgroundColor" red="0.18944453980000001" green="0.18944453980000001" blue="0.18944453980000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="iKT-07-29D" firstAttribute="leading" secondItem="7bI-3E-rQx" secondAttribute="leading" constant="30" id="FfZ-o9-REU"/>
+                            <constraint firstItem="iKT-07-29D" firstAttribute="leading" secondItem="7bI-3E-rQx" secondAttribute="leading" constant="40" id="FfZ-o9-REU"/>
                             <constraint firstItem="5T4-nF-gjj" firstAttribute="centerY" secondItem="k77-ZO-pzo" secondAttribute="centerY" id="Gpr-Hj-A4q"/>
                             <constraint firstItem="mFj-Vm-slh" firstAttribute="top" secondItem="7bI-3E-rQx" secondAttribute="top" constant="30" id="O0u-ud-DfZ"/>
                             <constraint firstItem="iKT-07-29D" firstAttribute="top" secondItem="mFj-Vm-slh" secondAttribute="bottom" constant="50" id="ZHt-MP-ZZf"/>
                             <constraint firstItem="mFj-Vm-slh" firstAttribute="leading" secondItem="7bI-3E-rQx" secondAttribute="leading" constant="30" id="hnL-Ec-HuB"/>
-                            <constraint firstAttribute="trailing" secondItem="KHO-Jy-SeL" secondAttribute="trailing" constant="30" id="mte-7T-ZQU"/>
+                            <constraint firstAttribute="trailing" secondItem="KHO-Jy-SeL" secondAttribute="trailing" constant="40" id="mte-7T-ZQU"/>
                             <constraint firstItem="5T4-nF-gjj" firstAttribute="centerX" secondItem="k77-ZO-pzo" secondAttribute="centerX" id="sqn-Ql-Udd"/>
                             <constraint firstItem="KHO-Jy-SeL" firstAttribute="top" secondItem="mFj-Vm-slh" secondAttribute="bottom" constant="50" id="xU8-fm-FMz"/>
                         </constraints>

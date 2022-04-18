@@ -21,6 +21,7 @@ public class Crypto {
 	//Generate and return public and private key
 	//Throws error when unsuccessful
 	public static func generateKeys(username: String) throws -> Dictionary<String, SecKey> {
+		//Key identifier in Keychain
 		let tag = ("com.pagoda8.GPS-Safe." + username).data(using: .utf8)
 		
 		let attributes: [String: Any] = [
@@ -34,6 +35,7 @@ public class Crypto {
 		
 		var error: Unmanaged<CFError>?
 		
+		//Generate and save in Keychain
 		guard let privateKey = SecKeyCreateRandomKey(attributes as CFDictionary, &error) else {
 			throw error!.takeRetainedValue() as Error
 		}
