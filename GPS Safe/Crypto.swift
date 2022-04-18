@@ -18,7 +18,7 @@ public class Crypto {
 		return string
 	}
 	
-	//Generate and return public and private key
+	//Generates and returns public and private key
 	//Throws error when unsuccessful
 	public static func generateKeys(username: String) throws -> Dictionary<String, SecKey> {
 		//Key identifier in Keychain
@@ -46,5 +46,18 @@ public class Crypto {
 		let keys = ["public": publicKey, "private": privateKey]
 		
 		return keys
+	}
+	
+	//Returns a string representation of a key
+	//Throws error when unsuccessful
+	public static func getStringOfKey(key: SecKey) throws -> String {
+		var error: Unmanaged<CFError>?
+		if let cfdata = SecKeyCopyExternalRepresentation(key, &error) {
+			let data = cfdata as Data
+			let keyString = data.base64EncodedString()
+			return keyString
+		} else {
+			throw error!.takeRetainedValue() as Error
+		}
 	}
 }
