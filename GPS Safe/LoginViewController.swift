@@ -64,8 +64,8 @@ class LoginViewController: UIViewController {
 			//User doesn't exist
 			if (!snapshot.hasChild(usernameHashString)) {
 				do {
-					let keys = try Crypto.generateKeys(username: self.username.text!)
-					let publicKeyString = try Crypto.getStringOfKey(key: keys["public"]!)
+					let keys = try Crypto.generateRSAKeys(username: self.username.text!)
+					let publicKeyString = try Crypto.getStringFromRSAKey(key: keys["public"]!)
 					
 					//Push to database
 					self.publicKeysCollection.child(usernameHashString).child("key").setValue(publicKeyString)
