@@ -77,8 +77,9 @@ class MySafeViewController: UIViewController {
 							let isText = dataSnap.childSnapshot(forPath: "isText").value as! Bool
 							let hasPassword = dataSnap.childSnapshot(forPath: "hasPassword").value as! Bool
 							let password = dataSnap.childSnapshot(forPath: "password").value as! String
+							let key = dataSnap.childSnapshot(forPath: "key").value as! String
 							
-							let dataHolder = DataHolder(user: usernameHash, location: locationSnap.key, data: dataSnap.key, boolOwner: isOwner, boolText: isText, name: name, password: password, boolPassword: hasPassword)
+							let dataHolder = DataHolder(user: usernameHash, location: locationSnap.key, data: dataSnap.key, boolOwner: isOwner, boolText: isText, name: name, password: password, boolPassword: hasPassword, key: key)
 							fetchedDataArray.append(dataHolder)
 						}
 					}

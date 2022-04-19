@@ -17,8 +17,9 @@ public class DataHolder {
 	private var name: String
 	private var password: String
 	private var boolPassword: Bool
+	private var key: String
 	
-	init(user: String, location: String, data: String, boolOwner: Bool, boolText: Bool, name: String, password: String, boolPassword: Bool) {
+	init(user: String, location: String, data: String, boolOwner: Bool, boolText: Bool, name: String, password: String, boolPassword: Bool, key: String) {
 		self.user = user
 		self.location = location
 		self.data = data
@@ -27,6 +28,7 @@ public class DataHolder {
 		self.name = name
 		self.password = password
 		self.boolPassword = boolPassword
+		self.key = key
 	}
 	
 	//Inserts all the data of the object into the database
@@ -68,6 +70,7 @@ public class DataHolder {
 				dataNode.child("isText").setValue(self.boolText)
 				dataNode.child("hasPassword").setValue(self.boolPassword)
 				dataNode.child("password").setValue(self.password)
+				dataNode.child("key").setValue(self.key)
 			}
 		}
 	}
@@ -102,5 +105,9 @@ public class DataHolder {
 	
 	public func hasPassword() -> Bool {
 		return boolPassword
+	}
+	
+	public func getKey() -> String {
+		return key
 	}
 }
