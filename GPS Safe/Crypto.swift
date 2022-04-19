@@ -22,7 +22,38 @@ public class Crypto {
 		return string
 	}
 	
+	//Encrypts a string using a symmetric key and returns encrypted string
+	//Throws error when unsuccessful
+	public static func encryptTextAES(plaintext: String, key: SymmetricKey) throws -> String {
+		guard let textData = plaintext.data(using: .utf8) else {
+			throw CryptoError.dataConversionError
+		}
+		
+		let sealedData = try AES.GCM.seal(textData, using: key)
+		let combined = sealedData.combined!
+		
+		return combined.base64EncodedString()
+	}
+	
+	//Decrypts an encrypted string using a symmetric key and returns decrypted string
+	//Throws error when unsuccessful
+	public static func decryptTextAES(ciphertext: String, key: SymmetricKey) throws -> String {
+		guard let textDataCombined = Data(base64Encoded: ciphertext) else {
+			throw CryptoError.dataConversionError
+		}
+		
+		let sealedData = try AES.GCM.SealedBox(combined: textDataCombined)
+		let decryptedData = try AES.GCM.open(sealedData, using: key)
+		
+		if let decryptedString = String(data: decryptedData, encoding: .utf8) {
+			return decryptedString
+		} else {
+			throw CryptoError.dataConversionError
+		}
+	}
+	
 	//Encrypts a string with a public key and returns encrypted string
+	//Throws error when unsuccessful
 	public static func encryptRSA(string: String, publicKey: SecKey) throws -> String {
 		guard let stringData = string.data(using: .utf8) else {
 			throw CryptoError.dataConversionError
@@ -39,6 +70,7 @@ public class Crypto {
 	}
 	
 	//Decrypts an encrypted string with a private key and returns decrypted string
+	//Throws error when unsuccessful
 	public static func decryptRSA(string: String, privateKey: SecKey) throws -> String {
 		guard let stringData = Data(base64Encoded: string) else {
 			throw CryptoError.dataConversionError
@@ -67,7 +99,9 @@ public class Crypto {
 	//Throws error when unsuccessful
 	public static func generateRSAKeys(username: String) throws -> Dictionary<String, SecKey> {
 		//Key identifier in Keychain
-		let tag = (appTag + username).data(using: .utf8)
+		guard let tag = (appTag + username).data(using: .utf8) else {
+			throw CryptoError.dataConversionError
+		}
 		
 		let attributes: [String: Any] = [
 			kSecAttrType as String: kSecAttrKeyTypeRSA,
@@ -75,7 +109,7 @@ public class Crypto {
 			kSecPrivateKeyAttrs as String: [
 				kSecAttrIsPermanent as String: true,
 				kSecAttrCanDecrypt as String: true,
-				kSecAttrApplicationTag as String: tag!
+				kSecAttrApplicationTag as String: tag
 			]
 		]
 		
@@ -98,11 +132,13 @@ public class Crypto {
 	//Throws error when unsuccessful
 	public static func getPrivateKey(username: String) throws -> SecKey {
 		//Key identifier in Keychain
-		let tag = (appTag + username).data(using: .utf8)
+		guard let tag = (appTag + username).data(using: .utf8) else {
+			throw CryptoError.dataConversionError
+		}
 		
 		let query: [String: Any] = [
 			kSecClass as String: kSecClassKey,
-			kSecAttrApplicationTag as String: tag!,
+			kSecAttrApplicationTag as String: tag,
 			kSecAttrKeyType as String: kSecAttrKeyTypeRSA,
 			kSecReturnPersistentRef as String: kCFBooleanTrue!
 		]
@@ -121,9 +157,9 @@ public class Crypto {
 	//Returns a string representation of a SymmetricKey
 	//Throws error when unsuccessful
 	public static func getStringFromAESKey(key: SymmetricKey) throws -> String {
-		return key.withUnsafeBytes({ body in
+		return key.withUnsafeBytes { body in
 			Data(body).base64EncodedString()
-		})
+		}
 	}
 	
 	//Returns a SymmetricKey given a string representation of a symmetric key
