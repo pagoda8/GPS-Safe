@@ -22,7 +22,8 @@ public class DataHolder {
 	init(user: String, location: String, data: String, boolOwner: Bool, boolText: Bool, name: String, password: String, boolPassword: Bool, key: String) {
 		self.user = user
 		self.location = location
-		self.data = data
+		//Convert from Firebase compatible format
+		self.data = data.replacingOccurrences(of: "%", with: "/")
 		self.boolOwner = boolOwner
 		self.boolText = boolText
 		self.name = name
@@ -35,7 +36,9 @@ public class DataHolder {
 	//Performs check to prevent overriding
 	public func pushToDB() {
 		let dataCollection = Database.database().reference(withPath: "Data")
-		var exists = false
+		//Convert to Firebase compatible format
+		let convertedData = self.data.replacingOccurrences(of: "/", with: "%")
+		var alreadyExists = false
 		
 		//Used to make sure inserting data into database is done after performing check
 		let group = DispatchGroup()
@@ -49,8 +52,8 @@ public class DataHolder {
 					if (snapshot.hasChild(self.location)) {
 						group.enter()
 						dataCollection.child(self.user).child(self.location).observeSingleEvent(of: .value, with: { snapshot in
-							if (snapshot.hasChild(self.data)) {
-								exists = true
+							if (snapshot.hasChild(convertedData)) {
+								alreadyExists = true
 							}
 							group.leave()
 						})
@@ -63,8 +66,8 @@ public class DataHolder {
 		
 		//Executed when check is complete
 		group.notify(queue: .main) {
-			if (!exists) {
-				let dataNode = dataCollection.child(self.user).child(self.location).child(self.data)
+			if (!alreadyExists) {
+				let dataNode = dataCollection.child(self.user).child(self.location).child(convertedData)
 				dataNode.child("name").setValue(self.name)
 				dataNode.child("isOwner").setValue(self.boolOwner)
 				dataNode.child("isText").setValue(self.boolText)
