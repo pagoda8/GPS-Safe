@@ -9,15 +9,15 @@ import UIKit
 import FirebaseDatabase
 
 public class DataHolder {
-	private var user: String
-	private var location: String
-	private var data: String
-	private var boolOwner: Bool
-	private var boolText: Bool
-	private var name: String
-	private var password: String
-	private var boolPassword: Bool
-	private var key: String
+	private var user: String //Hashed username
+	private var location: String //Latitude and longtitude
+	private var data: String //Data encrypted with symmetric key
+	private var boolOwner: Bool //Specifies if user is the owner of data
+	private var boolText: Bool //True if data is text, false if it's an image
+	private var name: String //Name of data set by the user
+	private var password: String //Hash of optional password (if set, otherwise empty)
+	private var boolPassword: Bool //Specifies if optional password was set
+	private var key: String //Symmetric key for data, encrypted with user's public key
 	
 	init(user: String, location: String, data: String, boolOwner: Bool, boolText: Bool, name: String, password: String, boolPassword: Bool, key: String) {
 		self.user = user
