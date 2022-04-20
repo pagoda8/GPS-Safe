@@ -10,7 +10,7 @@ import CryptoKit
 
 public class Crypto {
 	
-	//Used for identifying keys in keychain
+	//Used for identifying keys in Keychain
 	private static let appTag = "com.pagoda8.GPS-Safe."
 	
 	
@@ -92,7 +92,7 @@ public class Crypto {
 	
 	//Generates and returns a symmetric key
 	public static func generateAESKey() -> SymmetricKey {
-		return SymmetricKey(size: .bits128)
+		return SymmetricKey(size: .bits256)
 	}
 	
 	//Generates and returns public and private key
@@ -108,7 +108,6 @@ public class Crypto {
 			kSecAttrKeySizeInBits as String: 2048,
 			kSecPrivateKeyAttrs as String: [
 				kSecAttrIsPermanent as String: kCFBooleanTrue!,
-				kSecAttrCanDecrypt as String: kCFBooleanTrue!,
 				kSecAttrSynchronizable as String: kCFBooleanTrue!,
 				kSecAttrApplicationTag as String: tag
 			]
@@ -141,6 +140,7 @@ public class Crypto {
 			kSecClass as String: kSecClassKey,
 			kSecAttrApplicationTag as String: tag,
 			kSecAttrKeyType as String: kSecAttrKeyTypeRSA,
+			kSecAttrKeyClass as String: kSecAttrKeyClassPrivate,
 			kSecAttrSynchronizableAny as String: kCFBooleanTrue!,
 			kSecReturnPersistentRef as String: kCFBooleanTrue!
 		]
