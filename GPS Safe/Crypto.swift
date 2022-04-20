@@ -107,8 +107,9 @@ public class Crypto {
 			kSecAttrType as String: kSecAttrKeyTypeRSA,
 			kSecAttrKeySizeInBits as String: 2048,
 			kSecPrivateKeyAttrs as String: [
-				kSecAttrIsPermanent as String: true,
-				kSecAttrCanDecrypt as String: true,
+				kSecAttrIsPermanent as String: kCFBooleanTrue!,
+				kSecAttrCanDecrypt as String: kCFBooleanTrue!,
+				kSecAttrSynchronizable as String: kCFBooleanTrue!,
 				kSecAttrApplicationTag as String: tag
 			]
 		]
@@ -140,6 +141,7 @@ public class Crypto {
 			kSecClass as String: kSecClassKey,
 			kSecAttrApplicationTag as String: tag,
 			kSecAttrKeyType as String: kSecAttrKeyTypeRSA,
+			kSecAttrSynchronizableAny as String: kCFBooleanTrue!,
 			kSecReturnPersistentRef as String: kCFBooleanTrue!
 		]
 		
