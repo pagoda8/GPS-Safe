@@ -16,6 +16,9 @@ class EncryptTextViewController: UIViewController {
 	//Reference to the LocationManager
 	private let locationManager = LocationManager.shared
 	
+	//Used to show that data is being encrypted
+	private let activityIndicator = UIActivityIndicatorView(style: .large)
+	
 	//Indicates if adding data to safe should be aborted
 	private var abort: Bool = false
 
@@ -30,11 +33,22 @@ class EncryptTextViewController: UIViewController {
 		//Tap anywhere to hide keyboard
 		let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
 		view.addGestureRecognizer(tap)
+		
+		//Set up activity indicator
+		view.addSubview(activityIndicator)
+		activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+		activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+		activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+		activityIndicator.backgroundColor = UIColor(white: 0.3, alpha: 0.7)
+		activityIndicator.color = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+		activityIndicator.layer.cornerRadius = 5
+		activityIndicator.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
     }
     
 	//When cancel button is tapped
 	@IBAction func cancelTapped(_ sender: Any) {
 		abort = true
+		activityIndicator.stopAnimating()
 		//Go to My Safe screen (first tab)
 		showStoryboard(identifier: "tabController")
 	}
@@ -58,6 +72,7 @@ class EncryptTextViewController: UIViewController {
 				showLocationAlert()
 			}
 			else {
+				activityIndicator.startAnimating()
 				//Get location
 				locationManager.updateLocation()
 				locationManager.getStringCoordinates() { location in
@@ -82,19 +97,23 @@ class EncryptTextViewController: UIViewController {
 									//If cancel button was not tapped during encryption
 									if (!self.abort) {
 										dataHolder.pushToDB()
+										self.activityIndicator.stopAnimating()
 										self.showAlertAndStoryboard(title: "Success", message: "The data has been added to your safe", storyboardID: "tabController")
 									}
 								} //Error during encryption process
 								catch {
+									self.activityIndicator.stopAnimating()
 									self.showAlert(title: "Encryption failed", message: "An error has occured while trying to encrypt the data")
 								}
 							} //No public key for user
 							else {
+								self.activityIndicator.stopAnimating()
 								self.showAlert(title: "Account error", message: "Cannot encrypt using this account")
 							}
 						})
 					} //Error during getting location
 					catch {
+						self.activityIndicator.stopAnimating()
 						self.showAlert(title: "Location error", message: "Could not get your current location")
 					}
 				}
