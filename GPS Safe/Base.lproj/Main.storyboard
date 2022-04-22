@@ -261,19 +261,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QmN-y4-NpQ">
-                                <rect key="frame" x="111" y="405" width="95" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" systemColor="systemRedColor"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="Cancel"/>
-                                <connections>
-                                    <action selector="cancelTapped:" destination="AFN-ql-tVG" eventType="touchUpInside" id="0Lp-ze-i9L"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="vod-oW-LeI">
+                                <rect key="frame" x="30" y="348" width="354" height="100"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Image Encryption" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHd-Vf-RmA">
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="29"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="21"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coming soon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8R-FO-phq">
+                                        <rect key="frame" x="0.0" y="39" width="354" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QmN-y4-NpQ">
+                                        <rect key="frame" x="0.0" y="69" width="354" height="31"/>
+                                        <color key="tintColor" systemColor="systemRedColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="gray" title="Cancel"/>
+                                        <connections>
+                                            <action selector="cancelTapped:" destination="AFN-ql-tVG" eventType="touchUpInside" id="0Lp-ze-i9L"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="xEn-wm-pJE"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="TeA-9j-ydH"/>
                         <color key="backgroundColor" red="0.18944453980000001" green="0.18944453980000001" blue="0.18944453980000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="vod-oW-LeI" firstAttribute="centerY" secondItem="m4l-WX-Fal" secondAttribute="centerY" constant="-50" id="2Jb-UA-CCy"/>
+                            <constraint firstItem="TeA-9j-ydH" firstAttribute="trailing" secondItem="vod-oW-LeI" secondAttribute="trailing" constant="30" id="bhB-GH-rmE"/>
+                            <constraint firstItem="vod-oW-LeI" firstAttribute="leading" secondItem="TeA-9j-ydH" secondAttribute="leading" constant="30" id="mH7-xd-poW"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L9n-FT-ufh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

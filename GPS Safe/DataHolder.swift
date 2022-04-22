@@ -10,7 +10,7 @@ import FirebaseDatabase
 
 public class DataHolder {
 	private var user: String //Hashed username
-	private var location: String //Latitude and longtitude
+	private var location: String //Latitude and longitude
 	private var data: String //Data encrypted with symmetric key
 	private var boolOwner: Bool //Specifies if user is the owner of data
 	private var boolText: Bool //True if data is text, false if it's an image
@@ -21,8 +21,8 @@ public class DataHolder {
 	
 	init(user: String, location: String, data: String, boolOwner: Bool, boolText: Bool, name: String, password: String, boolPassword: Bool, key: String) {
 		self.user = user
-		self.location = location
 		//Convert from Firebase compatible format
+		self.location = location.replacingOccurrences(of: ",", with: ".")
 		self.data = data.replacingOccurrences(of: "%", with: "/")
 		self.boolOwner = boolOwner
 		self.boolText = boolText
@@ -37,6 +37,7 @@ public class DataHolder {
 	public func pushToDB() {
 		let dataCollection = Database.database().reference(withPath: "Data")
 		//Convert to Firebase compatible format
+		let convertedLocation = self.location.replacingOccurrences(of: ".", with: ",")
 		let convertedData = self.data.replacingOccurrences(of: "/", with: "%")
 		var alreadyExists = false
 		
@@ -49,9 +50,9 @@ public class DataHolder {
 			if (snapshot.hasChild(self.user)) {
 				group.enter()
 				dataCollection.child(self.user).observeSingleEvent(of: .value, with: { snapshot in
-					if (snapshot.hasChild(self.location)) {
+					if (snapshot.hasChild(convertedLocation)) {
 						group.enter()
-						dataCollection.child(self.user).child(self.location).observeSingleEvent(of: .value, with: { snapshot in
+						dataCollection.child(self.user).child(convertedLocation).observeSingleEvent(of: .value, with: { snapshot in
 							if (snapshot.hasChild(convertedData)) {
 								alreadyExists = true
 							}
@@ -67,7 +68,7 @@ public class DataHolder {
 		//Executed when check is complete
 		group.notify(queue: .main) {
 			if (!alreadyExists) {
-				let dataNode = dataCollection.child(self.user).child(self.location).child(convertedData)
+				let dataNode = dataCollection.child(self.user).child(convertedLocation).child(convertedData)
 				dataNode.child("name").setValue(self.name)
 				dataNode.child("isOwner").setValue(self.boolOwner)
 				dataNode.child("isText").setValue(self.boolText)

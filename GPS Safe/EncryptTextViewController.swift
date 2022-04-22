@@ -12,6 +12,12 @@ class EncryptTextViewController: UIViewController {
 	
 	//Reference to PublicKeys collection in database
 	private let publicKeysCollection = Database.database().reference(withPath: "PublicKeys")
+	
+	//Reference to the LocationManager
+	private let locationManager = LocationManager.shared
+	
+	//Indicates if adding data to safe should be aborted
+	private var abort: Bool = false
 
 	//Text fields for text, name and optional password
 	@IBOutlet weak var text: UITextField!
@@ -28,12 +34,14 @@ class EncryptTextViewController: UIViewController {
     
 	//When cancel button is tapped
 	@IBAction func cancelTapped(_ sender: Any) {
+		abort = true
 		//Go to My Safe screen (first tab)
 		showStoryboard(identifier: "tabController")
 	}
 	
 	//When encrypt button is tapped
 	@IBAction func encryptTapped(_ sender: Any) {
+		abort = false
 		if (validFields()) {
 			let usernameHash = Crypto.hash(input: AppDelegate.get().getCurrentUser())
 			let name = name.text!
@@ -45,29 +53,52 @@ class EncryptTextViewController: UIViewController {
 				optionalPassword = Crypto.hash(input: password.text!)
 			}
 			
-			publicKeysCollection.observeSingleEvent(of: .value, with: { snapshot in
-				if (snapshot.hasChild(usernameHash)) {
-					let publicKeyString = snapshot.childSnapshot(forPath: usernameHash).childSnapshot(forPath: "key").value as! String
-					
+			//Check location settings
+			if (!locationManager.locationServicesEnabled() || !locationManager.locationUsageAllowed() || !locationManager.locationUsingBestAccuracy()) {
+				showLocationAlert()
+			}
+			else {
+				//Get location
+				locationManager.updateLocation()
+				locationManager.getStringCoordinates() { location in
 					do {
-						let symmetricKey = Crypto.generateAESKey()
-						let encryptedText = try Crypto.encryptTextAES(plaintext: self.text.text!, key: symmetricKey)
-						let symmetricKeyString = try Crypto.getStringFromAESKey(key: symmetricKey)
-						let publicKey = try Crypto.getPublicKeyFromString(keyString: publicKeyString)
-						let encryptedSymmetricKey = try Crypto.encryptRSA(string: symmetricKeyString, publicKey: publicKey)
+						if (location == "error") {
+							throw LocationManager.LocationError.locationNotRecieved
+						}
 						
-						let dataHolder = DataHolder(user: usernameHash, location: "swansea", data: encryptedText, boolOwner: true, boolText: true, name: name, password: optionalPassword, boolPassword: boolPassword, key: encryptedSymmetricKey)
-						dataHolder.pushToDB()
-						self.showAlertAndStoryboard(title: "Success", message: "The data has been added to your safe", storyboardID: "tabController")
-					} //Error during encryption process
+						//Encrypt and save data
+						self.publicKeysCollection.observeSingleEvent(of: .value, with: { snapshot in
+							if (snapshot.hasChild(usernameHash)) {
+								let publicKeyString = snapshot.childSnapshot(forPath: usernameHash).childSnapshot(forPath: "key").value as! String
+								
+								do {
+									let symmetricKey = Crypto.generateAESKey()
+									let encryptedText = try Crypto.encryptTextAES(plaintext: self.text.text!, key: symmetricKey)
+									let symmetricKeyString = try Crypto.getStringFromAESKey(key: symmetricKey)
+									let publicKey = try Crypto.getPublicKeyFromString(keyString: publicKeyString)
+									let encryptedSymmetricKey = try Crypto.encryptRSA(string: symmetricKeyString, publicKey: publicKey)
+									
+									let dataHolder = DataHolder(user: usernameHash, location: location, data: encryptedText, boolOwner: true, boolText: true, name: name, password: optionalPassword, boolPassword: boolPassword, key: encryptedSymmetricKey)
+									//If cancel button was not tapped during encryption
+									if (!self.abort) {
+										dataHolder.pushToDB()
+										self.showAlertAndStoryboard(title: "Success", message: "The data has been added to your safe", storyboardID: "tabController")
+									}
+								} //Error during encryption process
+								catch {
+									self.showAlert(title: "Encryption failed", message: "An error has occured while trying to encrypt the data")
+								}
+							} //No public key for user
+							else {
+								self.showAlert(title: "Account error", message: "Cannot encrypt using this account")
+							}
+						})
+					} //Error during getting location
 					catch {
-						self.showAlert(title: "Encryption failed", message: "An error has occured while trying to encrypt the data")
+						self.showAlert(title: "Location error", message: "Could not get your current location")
 					}
-				} //No public key for user
-				else {
-					self.showAlert(title: "Account error", message: "Cannot encrypt using this account")
 				}
-			})
+			}
 		}
 	}
 	
@@ -99,6 +130,29 @@ class EncryptTextViewController: UIViewController {
 		let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
 		let action = UIAlertAction(title: "OK", style: .default) { _ in self.showStoryboard(identifier: storyboardID) }
 		alert.addAction(action)
+		self.present(alert, animated: true)
+	}
+	
+	//Shows alert giving information about using location and option to go to Settings or cancel
+	private func showLocationAlert() {
+		let alert = UIAlertController(title: "Precise location required", message: "Without precise location you will not be able to use most features of this app", preferredStyle: .alert)
+		
+		let goToSettings = UIAlertAction(title: "Go to Settings", style: .default) { _ in
+			guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else {
+				self.showAlert(title: "Error", message: "Cannot open Settings app")
+				return
+			}
+			if (UIApplication.shared.canOpenURL(settingsURL)) {
+				UIApplication.shared.open(settingsURL)
+			} else {
+				self.showAlert(title: "Error", message: "Cannot open Settings app")
+			}
+		}
+		
+		let cancel = UIAlertAction(title: "Cancel", style: .default)
+		
+		alert.addAction(cancel)
+		alert.addAction(goToSettings)
 		self.present(alert, animated: true)
 	}
 	

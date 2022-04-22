@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2E1EE3272805E0C600B86781 /* SharedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1EE3262805E0C600B86781 /* SharedViewController.swift */; };
 		2E1EE3292805E0EB00B86781 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1EE3282805E0EB00B86781 /* MyAccountViewController.swift */; };
+		2E204EF92810B950007C9142 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E204EF82810B950007C9142 /* LocationManager.swift */; };
 		2E35391227DEBDD2004653CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E35391127DEBDD2004653CD /* GoogleService-Info.plist */; };
 		2E3A0777280A102000B20764 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3A0776280A102000B20764 /* Crypto.swift */; };
 		2E3A0779280A171700B20764 /* EncryptTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3A0778280A171700B20764 /* EncryptTextViewController.swift */; };
@@ -27,6 +28,7 @@
 /* Begin PBXFileReference section */
 		2E1EE3262805E0C600B86781 /* SharedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedViewController.swift; sourceTree = "<group>"; };
 		2E1EE3282805E0EB00B86781 /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
+		2E204EF82810B950007C9142 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		2E35391127DEBDD2004653CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2E3A0776280A102000B20764 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		2E3A0778280A171700B20764 /* EncryptTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptTextViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				2E1EE3282805E0EB00B86781 /* MyAccountViewController.swift */,
 				2E4A59D127EE660E0060401A /* MySafeViewController.swift */,
 				2E3A0776280A102000B20764 /* Crypto.swift */,
+				2E204EF82810B950007C9142 /* LocationManager.swift */,
 				2E72A7F72807806500E8110F /* DataHolder.swift */,
 				2E99953D27DE93F70047D135 /* LoginViewController.swift */,
 				2E99951627D507D30047D135 /* Assets.xcassets */,
@@ -239,6 +242,7 @@
 				2E1EE3292805E0EB00B86781 /* MyAccountViewController.swift in Sources */,
 				2E4A59D227EE660E0060401A /* MySafeViewController.swift in Sources */,
 				2E99950B27D507D20047D135 /* AppDelegate.swift in Sources */,
+				2E204EF92810B950007C9142 /* LocationManager.swift in Sources */,
 				2E99950D27D507D20047D135 /* SceneDelegate.swift in Sources */,
 				2E3A077B280A173100B20764 /* EncryptImageViewController.swift in Sources */,
 				2E3A0779280A171700B20764 /* EncryptTextViewController.swift in Sources */,
