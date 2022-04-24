@@ -13,8 +13,8 @@ class EncryptImageViewController: UIViewController {
         super.viewDidLoad()
     }
 	
-	//When cancel button is tapped
-	@IBAction func cancelTapped(_ sender: Any) {
+	//When back button is tapped
+	@IBAction func backTapped(_ sender: Any) {
 		//Go to My Safe screen (first tab)
 		showStoryboard(identifier: "tabController")
 	}

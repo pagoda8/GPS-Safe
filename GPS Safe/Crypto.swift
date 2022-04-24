@@ -98,19 +98,33 @@ public class Crypto {
 	//Generates and returns public and private key
 	//Throws error when unsuccessful
 	public static func generateRSAKeys(username: String) throws -> Dictionary<String, SecKey> {
-		//Key identifier in Keychain
-		guard let tag = (appTag + username).data(using: .utf8) else {
+		//Key identifiers in Keychain
+		guard let tagPublic = (appTag + username + ".public").data(using: .utf8) else {
+			throw CryptoError.dataConversionError
+		}
+		guard let tagPrivate = (appTag + username + ".private").data(using: .utf8) else {
 			throw CryptoError.dataConversionError
 		}
 		
+		let publicAttrs: [String: Any] = [
+			kSecAttrIsPermanent as String: kCFBooleanTrue!,
+			kSecAttrApplicationTag as String: tagPublic,
+			kSecAttrKeyClass as String: kSecAttrKeyClassPublic,
+			kSecAttrSynchronizable as String: kCFBooleanTrue!
+		]
+		
+		let privateAttrs: [String: Any] = [
+			kSecAttrIsPermanent as String: kCFBooleanTrue!,
+			kSecAttrApplicationTag as String: tagPrivate,
+			kSecAttrKeyClass as String: kSecAttrKeyClassPrivate,
+			kSecAttrSynchronizable as String: kCFBooleanTrue!
+		]
+		
 		let attributes: [String: Any] = [
-			kSecAttrType as String: kSecAttrKeyTypeRSA,
+			kSecAttrKeyType as String: kSecAttrKeyTypeRSA,
 			kSecAttrKeySizeInBits as String: 2048,
-			kSecPrivateKeyAttrs as String: [
-				kSecAttrIsPermanent as String: kCFBooleanTrue!,
-				kSecAttrSynchronizable as String: kCFBooleanTrue!,
-				kSecAttrApplicationTag as String: tag
-			]
+			kSecPublicKeyAttrs as String: publicAttrs,
+			kSecPrivateKeyAttrs as String: privateAttrs
 		]
 		
 		var error: Unmanaged<CFError>?
@@ -132,7 +146,7 @@ public class Crypto {
 	//Throws error when unsuccessful
 	public static func getPrivateKey(username: String) throws -> SecKey {
 		//Key identifier in Keychain
-		guard let tag = (appTag + username).data(using: .utf8) else {
+		guard let tag = (appTag + username + ".private").data(using: .utf8) else {
 			throw CryptoError.dataConversionError
 		}
 		
@@ -141,8 +155,8 @@ public class Crypto {
 			kSecAttrApplicationTag as String: tag,
 			kSecAttrKeyType as String: kSecAttrKeyTypeRSA,
 			kSecAttrKeyClass as String: kSecAttrKeyClassPrivate,
-			kSecAttrSynchronizableAny as String: kCFBooleanTrue!,
-			kSecReturnPersistentRef as String: kCFBooleanTrue!
+			kSecAttrSynchronizable as String: kCFBooleanTrue!,
+			kSecReturnRef as String: kCFBooleanTrue!
 		]
 		
 		var item: CFTypeRef?
@@ -194,10 +208,10 @@ public class Crypto {
 	public static func getPublicKeyFromString(keyString: String) throws -> SecKey {
 		if let data = Data(base64Encoded: keyString) {
 			let attributes: [String: Any] = [
-				kSecAttrType as String: kSecAttrKeyTypeRSA,
+				kSecAttrKeyType as String: kSecAttrKeyTypeRSA,
 				kSecAttrKeySizeInBits as String: 2048,
 				kSecAttrKeyClass as String: kSecAttrKeyClassPublic,
-				kSecReturnPersistentRef as String: kCFBooleanTrue!
+				kSecReturnRef as String: kCFBooleanTrue!
 			]
 			
 			var error: Unmanaged<CFError>?

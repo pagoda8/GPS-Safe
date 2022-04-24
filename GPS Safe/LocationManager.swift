@@ -63,10 +63,10 @@ public class LocationManager: NSObject, CLLocationManagerDelegate {
 		return CLLocationManager.locationServicesEnabled()
 	}
 	
-	//Returns the coordinates of the latest location as a string
+	//Returns the coordinate of the latest location as a string
 	//Uses a completion handler to return the result
 	//Returns "error" if location was not recieved
-	public func getStringCoordinates(completion: @escaping (String) -> Void) {
+	public func getStringCoordinate(completion: @escaping (String) -> Void) {
 		var i = 0
 		var string = String()
 		
@@ -86,6 +86,24 @@ public class LocationManager: NSObject, CLLocationManagerDelegate {
 		}
 	}
 	
+	//Returns true if current location is within a 20m distance from original location, false otherwise.
+	public func isInsideRegion(currentLocation: String, originalLocation: String) -> Bool {
+		let currentCoordinate = getCoordinateFromString(location: currentLocation)
+		let originalCoordinate = getCoordinateFromString(location: originalLocation)
+		let region = CLCircularRegion(center: originalCoordinate, radius: 20, identifier: "encryptionRegion")
+		
+		return region.contains(currentCoordinate)
+	}
+	
+	//Returns a coordinate from a string containing latitude and longitude
+	public func getCoordinateFromString(location: String) -> CLLocationCoordinate2D {
+		let components = location.components(separatedBy: "|")
+		let latitude = Double(components[0])
+		let longitude = Double(components[1])
+		
+		return CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
+	}
+	
 	//Called when .requestLocation() successfully gets location
 	public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		latestLocation = locations.last! //Array always has at least one item
@@ -100,5 +118,6 @@ public class LocationManager: NSObject, CLLocationManagerDelegate {
 	//Enum for throwing errors
 	public enum LocationError: Error {
 		case locationNotRecieved
+		case locationNotInRegion
 	}
 }

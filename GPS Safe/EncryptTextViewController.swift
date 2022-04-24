@@ -75,7 +75,7 @@ class EncryptTextViewController: UIViewController {
 				activityIndicator.startAnimating()
 				//Get location
 				locationManager.updateLocation()
-				locationManager.getStringCoordinates() { location in
+				locationManager.getStringCoordinate() { location in
 					do {
 						if (location == "error") {
 							throw LocationManager.LocationError.locationNotRecieved

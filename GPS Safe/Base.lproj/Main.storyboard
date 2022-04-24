@@ -79,7 +79,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="117" y="100"/>
+            <point key="canvasLocation" x="115.94202898550725" y="99.776785714285708"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="eMm-ZJ-TvS">
@@ -278,9 +278,8 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QmN-y4-NpQ">
                                         <rect key="frame" x="0.0" y="69" width="354" height="31"/>
-                                        <color key="tintColor" systemColor="systemRedColor"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" title="Cancel"/>
+                                        <buttonConfiguration key="configuration" style="gray" title="Back to My Safe"/>
                                         <connections>
                                             <action selector="cancelTapped:" destination="AFN-ql-tVG" eventType="touchUpInside" id="0Lp-ze-i9L"/>
                                         </connections>
