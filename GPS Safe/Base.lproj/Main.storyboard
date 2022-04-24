@@ -202,7 +202,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You will only be able to access this data from the location at which you are right now." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZjP-6m-wLi">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You will only be able to access this data from the location at which you are right now" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZjP-6m-wLi">
                                         <rect key="frame" x="0.0" y="174.5" width="354" height="33.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -281,7 +281,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" title="Back to My Safe"/>
                                         <connections>
-                                            <action selector="cancelTapped:" destination="AFN-ql-tVG" eventType="touchUpInside" id="0Lp-ze-i9L"/>
+                                            <action selector="backTapped:" destination="AFN-ql-tVG" eventType="touchUpInside" id="CW1-8a-LU7"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -317,15 +317,39 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="55" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="TCI-2b-Mvc">
+                                <rect key="frame" x="0.0" y="134.5" width="414" height="678.5"/>
+                                <color key="backgroundColor" red="0.18944453980000001" green="0.18944453980000001" blue="0.18944453980000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="separatorColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="separatorInset" minX="25" minY="0.0" maxX="25" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="9" reuseIdentifier="tableCell" id="dfd-QO-uZQ">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="55"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dfd-QO-uZQ" id="iBz-f1-PnH">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.18944453980000001" green="0.18944453980000001" blue="0.18944453980000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fdz-Vo-C0i"/>
                         <color key="backgroundColor" red="0.18944453980000001" green="0.18944453980000001" blue="0.18944453980000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="TCI-2b-Mvc" firstAttribute="trailing" secondItem="fdz-Vo-C0i" secondAttribute="trailing" id="8BK-sD-cLP"/>
                             <constraint firstItem="nhC-J9-IdA" firstAttribute="top" secondItem="fdz-Vo-C0i" secondAttribute="top" constant="30" id="9bs-tb-o6p"/>
+                            <constraint firstItem="TCI-2b-Mvc" firstAttribute="top" secondItem="nhC-J9-IdA" secondAttribute="bottom" constant="15" id="VOF-B6-gUa"/>
                             <constraint firstItem="nhC-J9-IdA" firstAttribute="leading" secondItem="fdz-Vo-C0i" secondAttribute="leading" constant="30" id="cx7-D3-afw"/>
+                            <constraint firstItem="TCI-2b-Mvc" firstAttribute="leading" secondItem="fdz-Vo-C0i" secondAttribute="leading" id="ej4-wG-6eB"/>
+                            <constraint firstItem="fdz-Vo-C0i" firstAttribute="bottom" secondItem="TCI-2b-Mvc" secondAttribute="bottom" id="ygo-La-Dhu"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Shared" image="tray.and.arrow.down" catalog="system" id="hfd-Ko-uDv"/>
+                    <connections>
+                        <outlet property="tableView" destination="TCI-2b-Mvc" id="vN4-5l-myb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vWP-MM-VHL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -18,6 +18,7 @@ public class LocationManager: NSObject, CLLocationManagerDelegate {
 	
 	//Latest location of user
 	private var latestLocation: CLLocation = CLLocation()
+	
 	//Specifies if it is safe to get the latestLocation
 	private var readyToGet: Bool = false
 	

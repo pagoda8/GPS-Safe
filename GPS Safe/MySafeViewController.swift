@@ -16,8 +16,8 @@ class MySafeViewController: UIViewController {
 	//Reference to the LocationManager
 	private let locationManager = LocationManager.shared
 	
-	//Shows a list of user's data
-	@IBOutlet var tableView: UITableView!
+	//Stores a copy of the user's data
+	private var dataArray: [DataHolder] = []
 	
 	//Controls refreshing of table view
 	private let refreshControl = UIRefreshControl()
@@ -25,9 +25,9 @@ class MySafeViewController: UIViewController {
 	//Used to show that data is being decrypted
 	private let activityIndicator = UIActivityIndicatorView(style: .large)
 	
-	//Stores a copy of the user's data
-	private var dataArray: [DataHolder] = []
-	
+	//Shows a list of user's data
+	@IBOutlet var tableView: UITableView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -199,11 +199,6 @@ class MySafeViewController: UIViewController {
 		fetchData()
 	}
 	
-	//Returns array with user's data
-	public func getDataArray() -> [DataHolder] {
-		return dataArray
-	}
-	
 	//Shows alert with given title and message
 	private func showAlert(title: String, message: String) {
 		let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -212,7 +207,7 @@ class MySafeViewController: UIViewController {
 	}
 	
 	//Shows alert before decryption
-	public func showDecryptAlert(dataIndex: Int) {
+	private func showDecryptAlert(dataIndex: Int) {
 		let name = dataArray[dataIndex].getName()
 		
 		let alert = UIAlertController(title: "Attempting to decrypt", message: "Are you sure you want to access the data with name: " + name + " ?", preferredStyle: .alert)
@@ -297,36 +292,25 @@ class MySafeViewController: UIViewController {
 
 //Table view setup
 
-extension UIViewController: UITableViewDelegate {
+extension MySafeViewController: UITableViewDelegate {
 	//When row in table is tapped
 	public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		if let vc = self as? MySafeViewController {
-			vc.showDecryptAlert(dataIndex: indexPath.row)
-		}
+		showDecryptAlert(dataIndex: indexPath.row)
 		tableView.deselectRow(at: indexPath, animated: true)
 	}
 }
 
-extension UIViewController: UITableViewDataSource {
+extension MySafeViewController: UITableViewDataSource {
 	//Returns the number of rows for the table
 	public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if let vc = self as? MySafeViewController {
-			return vc.getDataArray().count
-		} else {
-			return 0
-		}
+		return dataArray.count
 	}
 	
 	//Creates and returns a cell
 	public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		var localDataArray: [DataHolder] = []
-		if let vc = self as? MySafeViewController {
-			localDataArray = vc.getDataArray()
-		}
-		
 		//Create cell from reusable cell
 		let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
-		cell.textLabel?.text = localDataArray[indexPath.row].getName()
+		cell.textLabel?.text = dataArray[indexPath.row].getName()
 		cell.textLabel?.textColor = UIColor.white
 		
 		//Set selection highlight colour
