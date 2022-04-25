@@ -79,6 +79,11 @@ public class DataHolder {
 		}
 	}
 	
+	//Deletes all the data of the object from the database
+	public func deleteFromDB() {
+		
+	}
+	
 	public func getUser() -> String {
 		return user
 	}

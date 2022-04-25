@@ -10,8 +10,10 @@ import FirebaseDatabase
 
 class MySafeViewController: UIViewController {
 	
-	//Reference to Data collection in the database
+	//References to collections in the database
 	private let dataCollection = Database.database().reference(withPath: "Data")
+	private let usersCollection = Database.database().reference(withPath: "Users")
+	private let publicKeysCollection = Database.database().reference(withPath: "PublicKeys")
 	
 	//Reference to the LocationManager
 	private let locationManager = LocationManager.shared
@@ -201,7 +203,128 @@ class MySafeViewController: UIViewController {
 	
 	//Shares the data stored in the dataArray at given index
 	private func share(dataIndex: Int) {
+		let item = dataArray[dataIndex]
+		let currentUser = AppDelegate.get().getCurrentUser()
 		
+		//Used to make sure sharing happens only after entering the correct password (if set)
+		var abort: Bool = false
+		let group1 = DispatchGroup()
+		
+		//Check password
+		if (item.hasPassword()) {
+			group1.enter()
+			showPasswordAlert() { password in
+				do {
+					if (password == "") {
+						throw MySafeError.invalidPassword
+					}
+					let passwordHash = Crypto.hash(input: password)
+					if (passwordHash != item.getPassword()) {
+						throw MySafeError.invalidPassword
+					}
+					group1.leave()
+				} //Invalid password
+				catch {
+					abort = true
+					group1.leave()
+					self.showAlert(title: "Invalid password", message: "The password entered is incorrect")
+				}
+			}
+		}
+		
+		//Executed after password check completes
+		group1.notify(queue: .main) {
+			if (abort) {
+				return
+			}
+			//Get username
+			self.showUsernameAlert() { enteredUsername in
+				do {
+					if (enteredUsername == "") {
+						throw MySafeError.invalidUsername
+					}
+					else if (enteredUsername == currentUser) {
+						throw MySafeError.logicError
+					}
+					//Cancel tapped
+					else if (enteredUsername == "\t\n") {
+						throw MySafeError.abort
+					}
+					
+					let enteredUsernameHash = Crypto.hash(input: enteredUsername)
+					//Used to make sure sharing happens only when entered username exists
+					let group2 = DispatchGroup()
+					
+					//Check username
+					group2.enter()
+					self.usersCollection.observeSingleEvent(of: .value, with: { snapshot in
+						do {
+							if (!snapshot.hasChild(enteredUsernameHash)) {
+								throw MySafeError.invalidUsername
+							}
+							group2.leave()
+						} //User doesn't exist
+						catch {
+							abort = true
+							group2.leave()
+							self.showAlert(title: "Invalid username", message: "The username entered does not exist")
+						}
+					})
+					
+					//Executed after username check completes
+					group2.notify(queue: .main) {
+						if (abort) {
+							return
+						}
+						//Sharing (i.e. decrypting and encrypting)
+						do {
+							//Decrypt symmetric key
+							let privateKey = try Crypto.getPrivateKey(username: currentUser)
+							let symmetricKeyString = try Crypto.decryptRSA(string: item.getKey(), privateKey: privateKey)
+							
+							//Encrypt symmetric key and share data
+							self.publicKeysCollection.observeSingleEvent(of: .value, with: { snapshot in
+								if (snapshot.hasChild(enteredUsernameHash)) {
+									let publicKeyString = snapshot.childSnapshot(forPath: enteredUsernameHash).childSnapshot(forPath: "key").value as! String
+									
+									do {
+										let publicKey = try Crypto.getPublicKeyFromString(keyString: publicKeyString)
+										let encryptedSymmetricKey = try Crypto.encryptRSA(string: symmetricKeyString, publicKey: publicKey)
+										
+										let dataHolder = DataHolder(user: enteredUsernameHash, location: item.getLocation(), data: item.getData(), boolOwner: false, boolText: item.isText(), name: item.getName(), password: item.getPassword(), boolPassword: item.hasPassword(), key: encryptedSymmetricKey)
+										dataHolder.pushToDB()
+										self.showAlert(title: "Success", message: "Data was shared to user: " + enteredUsername)
+									} //Error during encryption process
+									catch {
+										self.showAlert(title: "Sharing failed", message: "An error has occured while trying to share the data")
+									}
+								} //No public key for user
+								else {
+									self.showAlert(title: "Sharing error", message: "Cannot share data to this user")
+								}
+							})
+						} //Error during decryption process
+						catch {
+							self.showAlert(title: "Sharing failed", message: "An error has occured while trying to share the data")
+						}
+					}
+				} //Username error
+				catch let error as MySafeError {
+					if (error == .invalidUsername) {
+						self.showAlert(title: "Invalid username", message: "The entered username cannot be empty")
+					}
+					else if (error == .logicError) {
+						self.showAlert(title: "Invalid username", message: "You cannot share data to yourself")
+					}
+					else if (error == .abort) {
+						return
+					}
+				} //Other error
+				catch {
+					self.showAlert(title: "Error", message: "Something went wrong")
+				}
+			}
+		}
 	}
 	
 	//Deletes the data stored in the dataArray at given index
@@ -265,6 +388,31 @@ class MySafeViewController: UIViewController {
 			}
 		}
 		
+		alert.addAction(ok)
+		self.present(alert, animated: true)
+	}
+	
+	//Shows alert prompting the user to input the username of user to share to
+	//Uses a completion handler to return the entered username
+	private func showUsernameAlert(completion: @escaping (String) -> Void) {
+		vibrate(style: .light)
+		let alert = UIAlertController(title: "Enter username", message: "Enter the username of the user which you want to share the data with", preferredStyle: .alert)
+		alert.addTextField() { textField in
+			textField.placeholder = "username"
+		}
+		let ok = UIAlertAction(title: "OK", style: .default) { _ in
+			let textField = alert.textFields![0]
+			if (textField.text?.isEmpty == true) {
+				completion("")
+			} else {
+				completion(textField.text!)
+			}
+		}
+		let cancel = UIAlertAction(title: "Cancel", style: .default) { _ in
+			completion("\t\n")
+		}
+		
+		alert.addAction(cancel)
 		alert.addAction(ok)
 		self.present(alert, animated: true)
 	}
@@ -336,6 +484,9 @@ class MySafeViewController: UIViewController {
 	//Enum for throwing errors
 	public enum MySafeError: Error {
 		case invalidPassword
+		case invalidUsername
+		case logicError
+		case abort
 	}
 }
 

@@ -35,6 +35,10 @@ class SharedViewController: UIViewController {
 		tableView.delegate = self
 		tableView.dataSource = self
 		
+		//Long press for table view
+		let longPress = UILongPressGestureRecognizer(target: self, action: #selector(longPress(sender:)))
+		tableView.addGestureRecognizer(longPress)
+		
 		//Set up refresh control
 		tableView.refreshControl = refreshControl
 		tableView.backgroundView = refreshControl
@@ -174,9 +178,25 @@ class SharedViewController: UIViewController {
 		}
 	}
 	
+	//Deletes the data stored in the sharedDataArray at given index
+	private func delete(dataIndex: Int) {
+		
+	}
+	
 	//Objective-C function to refresh the table view. Used for refreshControl.
 	@objc private func refreshTable(_ sender: Any) {
 		fetchSharedData()
+	}
+	
+	//Objective-C function to handle long press on table view cell
+	//Shows option to delete the data
+	@objc private func longPress(sender: UILongPressGestureRecognizer) {
+		if (sender.state == UIGestureRecognizer.State.began) {
+			let touchPoint = sender.location(in: tableView)
+			if let indexPath = tableView.indexPathForRow(at: touchPoint) {
+				showDeleteAction(dataIndex: indexPath.row)
+			}
+		}
 	}
 	
 	//Shows alert with given title and message
@@ -260,6 +280,17 @@ class SharedViewController: UIViewController {
 		alert.addAction(close)
 		alert.addAction(copy)
 		self.present(alert, animated: true)
+	}
+	
+	//Shows option to delete the data
+	private func showDeleteAction(dataIndex: Int) {
+		vibrate(style: .medium)
+		let name = sharedDataArray[dataIndex].getName()
+		
+		let actionSheet = UIAlertController(title: "Data with name: " + name, message: "Select the type of action", preferredStyle: .actionSheet)
+		actionSheet.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in self.delete(dataIndex: dataIndex) }))
+		actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+		self.present(actionSheet, animated: true)
 	}
 	
 	//Vibrates phone with given style
