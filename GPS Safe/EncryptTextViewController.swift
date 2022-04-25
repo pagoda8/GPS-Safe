@@ -138,6 +138,7 @@ class EncryptTextViewController: UIViewController {
 	
 	//Shows alert with given title and message
 	private func showAlert(title: String, message: String) {
+		vibrate(style: .light)
 		let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
 		alert.addAction(UIAlertAction(title: "OK", style: .default))
 		self.present(alert, animated: true)
@@ -146,6 +147,7 @@ class EncryptTextViewController: UIViewController {
 	//Shows alert with given title and message
 	//Shows storyboard with given identifier after "OK" button is tapped
 	private func showAlertAndStoryboard(title: String, message: String, storyboardID: String) {
+		vibrate(style: .medium)
 		let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
 		let action = UIAlertAction(title: "OK", style: .default) { _ in self.showStoryboard(identifier: storyboardID) }
 		alert.addAction(action)
@@ -154,6 +156,7 @@ class EncryptTextViewController: UIViewController {
 	
 	//Shows alert giving information about using location and option to go to Settings or cancel
 	private func showLocationAlert() {
+		vibrate(style: .light)
 		let alert = UIAlertController(title: "Precise location required", message: "Without precise location you will not be able to use most features of this app", preferredStyle: .alert)
 		
 		let goToSettings = UIAlertAction(title: "Go to Settings", style: .default) { _ in
@@ -180,5 +183,11 @@ class EncryptTextViewController: UIViewController {
 		let vc = self.storyboard?.instantiateViewController(withIdentifier: identifier)
 		vc?.modalPresentationStyle = .overFullScreen
 		self.present(vc!, animated: true)
+	}
+	
+	//Vibrates phone with given style
+	private func vibrate(style: UIImpactFeedbackGenerator.FeedbackStyle) {
+		let generator = UIImpactFeedbackGenerator(style: style)
+		generator.impactOccurred()
 	}
 }

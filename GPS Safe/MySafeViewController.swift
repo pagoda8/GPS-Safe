@@ -35,6 +35,10 @@ class MySafeViewController: UIViewController {
 		tableView.delegate = self
 		tableView.dataSource = self
 		
+		//Long press for table view
+		let longPress = UILongPressGestureRecognizer(target: self, action: #selector(longPress(sender:)))
+		tableView.addGestureRecognizer(longPress)
+		
 		//Set up refresh control
 		tableView.refreshControl = refreshControl
 		tableView.backgroundView = refreshControl
@@ -56,6 +60,7 @@ class MySafeViewController: UIViewController {
 
 	//When (+) button is tapped
 	@IBAction func addTapped(_ sender: Any) {
+		vibrate(style: .medium)
 		//Show options to select type of data to encrypt
 		let actionSheet = UIAlertController(title: "Add data to your safe", message: "Select the type of data you want to encrypt", preferredStyle: .actionSheet)
 		actionSheet.addAction(UIAlertAction(title: "Text", style: .default, handler: { _ in self.textSelected() }))
@@ -194,13 +199,35 @@ class MySafeViewController: UIViewController {
 		}
 	}
 	
+	//Shares the data stored in the dataArray at given index
+	private func share(dataIndex: Int) {
+		
+	}
+	
+	//Deletes the data stored in the dataArray at given index
+	private func delete(dataIndex: Int) {
+		
+	}
+	
 	//Objective-C function to refresh the table view. Used for refreshControl.
 	@objc private func refreshTable(_ sender: Any) {
 		fetchData()
 	}
 	
+	//Objective-C function to handle long press on table view cell
+	//Shows options to share or delete the data
+	@objc private func longPress(sender: UILongPressGestureRecognizer) {
+		if (sender.state == UIGestureRecognizer.State.began) {
+			let touchPoint = sender.location(in: tableView)
+			if let indexPath = tableView.indexPathForRow(at: touchPoint) {
+				showShareOrDeleteActions(dataIndex: indexPath.row)
+			}
+		}
+	}
+	
 	//Shows alert with given title and message
 	private func showAlert(title: String, message: String) {
+		vibrate(style: .light)
 		let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
 		alert.addAction(UIAlertAction(title: "OK", style: .default))
 		self.present(alert, animated: true)
@@ -208,6 +235,7 @@ class MySafeViewController: UIViewController {
 	
 	//Shows alert before decryption
 	private func showDecryptAlert(dataIndex: Int) {
+		vibrate(style: .light)
 		let name = dataArray[dataIndex].getName()
 		
 		let alert = UIAlertController(title: "Attempting to decrypt", message: "Are you sure you want to access the data with name: " + name + " ?", preferredStyle: .alert)
@@ -222,6 +250,7 @@ class MySafeViewController: UIViewController {
 	//Shows alert prompting the user to input the password for the data
 	//Uses a completion handler to return the entered password
 	private func showPasswordAlert(completion: @escaping (String) -> Void) {
+		vibrate(style: .light)
 		let alert = UIAlertController(title: "Password required", message: "Please input the password for the data", preferredStyle: .alert)
 		alert.addTextField() { textField in
 			textField.isSecureTextEntry = true
@@ -242,6 +271,7 @@ class MySafeViewController: UIViewController {
 	
 	//Shows alert giving information about using location and option to go to Settings or cancel
 	private func showLocationAlert() {
+		vibrate(style: .light)
 		let alert = UIAlertController(title: "Precise location required", message: "Without precise location you will not be able to use most features of this app", preferredStyle: .alert)
 		
 		let goToSettings = UIAlertAction(title: "Go to Settings", style: .default) { _ in
@@ -265,6 +295,7 @@ class MySafeViewController: UIViewController {
 	
 	//Shows alert with decrypted text and option to copy it
 	private func showDecryptedTextAlert(text: String) {
+		vibrate(style: .medium)
 		let alert = UIAlertController(title: "Decrypted Text", message: text, preferredStyle: .alert)
 		let copy = UIAlertAction(title: "Copy", style: .default) { _ in
 			let pasteboard = UIPasteboard.general
@@ -277,11 +308,29 @@ class MySafeViewController: UIViewController {
 		self.present(alert, animated: true)
 	}
 	
+	//Shows action sheet with options to share or delete the data
+	private func showShareOrDeleteActions(dataIndex: Int) {
+		vibrate(style: .medium)
+		let name = dataArray[dataIndex].getName()
+		
+		let actionSheet = UIAlertController(title: "Data with name: " + name, message: "Select the type of action", preferredStyle: .actionSheet)
+		actionSheet.addAction(UIAlertAction(title: "Share", style: .default, handler: { _ in self.share(dataIndex: dataIndex) }))
+		actionSheet.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in self.delete(dataIndex: dataIndex) }))
+		actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+		self.present(actionSheet, animated: true)
+	}
+	
 	//Shows storyboard with given identifier
 	private func showStoryboard(identifier: String) {
 		let vc = self.storyboard?.instantiateViewController(withIdentifier: identifier)
 		vc?.modalPresentationStyle = .overFullScreen
 		self.present(vc!, animated: true)
+	}
+	
+	//Vibrates phone with given style
+	private func vibrate(style: UIImpactFeedbackGenerator.FeedbackStyle) {
+		let generator = UIImpactFeedbackGenerator(style: style)
+		generator.impactOccurred()
 	}
 	
 	//Enum for throwing errors

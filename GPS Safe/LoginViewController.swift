@@ -110,6 +110,7 @@ class LoginViewController: UIViewController {
 	
 	//Shows alert with given title and message
 	private func showAlert(title: String, message: String) {
+		vibrate(style: .light)
 		let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
 		alert.addAction(UIAlertAction(title: "OK", style: .default))
 		self.present(alert, animated: true)
@@ -120,5 +121,11 @@ class LoginViewController: UIViewController {
 		let vc = self.storyboard?.instantiateViewController(withIdentifier: identifier)
 		vc?.modalPresentationStyle = .overFullScreen
 		self.present(vc!, animated: true)
+	}
+	
+	//Vibrates phone with given style
+	private func vibrate(style: UIImpactFeedbackGenerator.FeedbackStyle) {
+		let generator = UIImpactFeedbackGenerator(style: style)
+		generator.impactOccurred()
 	}
 }

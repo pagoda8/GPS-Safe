@@ -181,6 +181,7 @@ class SharedViewController: UIViewController {
 	
 	//Shows alert with given title and message
 	private func showAlert(title: String, message: String) {
+		vibrate(style: .light)
 		let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
 		alert.addAction(UIAlertAction(title: "OK", style: .default))
 		self.present(alert, animated: true)
@@ -188,6 +189,7 @@ class SharedViewController: UIViewController {
 	
 	//Shows alert before decryption
 	private func showDecryptAlert(dataIndex: Int) {
+		vibrate(style: .light)
 		let name = sharedDataArray[dataIndex].getName()
 		
 		let alert = UIAlertController(title: "Attempting to decrypt", message: "Are you sure you want to access the data with name: " + name + " ?", preferredStyle: .alert)
@@ -202,6 +204,7 @@ class SharedViewController: UIViewController {
 	//Shows alert prompting the user to input the password for the data
 	//Uses a completion handler to return the entered password
 	private func showPasswordAlert(completion: @escaping (String) -> Void) {
+		vibrate(style: .light)
 		let alert = UIAlertController(title: "Password required", message: "Please input the password for the data", preferredStyle: .alert)
 		alert.addTextField() { textField in
 			textField.isSecureTextEntry = true
@@ -222,6 +225,7 @@ class SharedViewController: UIViewController {
 	
 	//Shows alert giving information about using location and option to go to Settings or cancel
 	private func showLocationAlert() {
+		vibrate(style: .light)
 		let alert = UIAlertController(title: "Precise location required", message: "Without precise location you will not be able to use most features of this app", preferredStyle: .alert)
 		
 		let goToSettings = UIAlertAction(title: "Go to Settings", style: .default) { _ in
@@ -245,6 +249,7 @@ class SharedViewController: UIViewController {
 	
 	//Shows alert with decrypted text and option to copy it
 	private func showDecryptedTextAlert(text: String) {
+		vibrate(style: .medium)
 		let alert = UIAlertController(title: "Decrypted Text", message: text, preferredStyle: .alert)
 		let copy = UIAlertAction(title: "Copy", style: .default) { _ in
 			let pasteboard = UIPasteboard.general
@@ -255,6 +260,12 @@ class SharedViewController: UIViewController {
 		alert.addAction(close)
 		alert.addAction(copy)
 		self.present(alert, animated: true)
+	}
+	
+	//Vibrates phone with given style
+	private func vibrate(style: UIImpactFeedbackGenerator.FeedbackStyle) {
+		let generator = UIImpactFeedbackGenerator(style: style)
+		generator.impactOccurred()
 	}
 	
 	//Enum for throwing errors
