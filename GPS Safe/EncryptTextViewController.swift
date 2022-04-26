@@ -55,6 +55,8 @@ class EncryptTextViewController: UIViewController {
 	
 	//When encrypt button is tapped
 	@IBAction func encryptTapped(_ sender: Any) {
+		self.view.endEditing(true)
+		
 		abort = false
 		if (validFields()) {
 			let usernameHash = Crypto.hash(input: AppDelegate.get().getCurrentUser())
