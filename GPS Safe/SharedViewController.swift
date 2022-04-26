@@ -180,7 +180,10 @@ class SharedViewController: UIViewController {
 	
 	//Deletes the data stored in the sharedDataArray at given index
 	private func delete(dataIndex: Int) {
+		let item = sharedDataArray[dataIndex]
+		item.deleteFromDB()
 		
+		fetchSharedData()
 	}
 	
 	//Objective-C function to refresh the table view. Used for refreshControl.
@@ -218,6 +221,20 @@ class SharedViewController: UIViewController {
 		
 		alert.addAction(cancel)
 		alert.addAction(decrypt)
+		self.present(alert, animated: true)
+	}
+	
+	//Shows alert before deletion
+	private func showDeleteAlert(dataIndex: Int) {
+		vibrate(style: .light)
+		let name = sharedDataArray[dataIndex].getName()
+		
+		let alert = UIAlertController(title: "Attempting to delete", message: "Are you sure you want to delete the data with name: " + name + " ?", preferredStyle: .alert)
+		let delete = UIAlertAction(title: "Delete", style: .default) { _ in self.delete(dataIndex: dataIndex) }
+		let cancel = UIAlertAction(title: "Cancel", style: .default)
+		
+		alert.addAction(cancel)
+		alert.addAction(delete)
 		self.present(alert, animated: true)
 	}
 	
@@ -269,7 +286,7 @@ class SharedViewController: UIViewController {
 	
 	//Shows alert with decrypted text and option to copy it
 	private func showDecryptedTextAlert(text: String) {
-		vibrate(style: .medium)
+		vibrate(style: .light)
 		let alert = UIAlertController(title: "Decrypted Text", message: text, preferredStyle: .alert)
 		let copy = UIAlertAction(title: "Copy", style: .default) { _ in
 			let pasteboard = UIPasteboard.general
@@ -288,7 +305,7 @@ class SharedViewController: UIViewController {
 		let name = sharedDataArray[dataIndex].getName()
 		
 		let actionSheet = UIAlertController(title: "Data with name: " + name, message: "Select the type of action", preferredStyle: .actionSheet)
-		actionSheet.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in self.delete(dataIndex: dataIndex) }))
+		actionSheet.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in self.showDeleteAlert(dataIndex: dataIndex) }))
 		actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
 		self.present(actionSheet, animated: true)
 	}

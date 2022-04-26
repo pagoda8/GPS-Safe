@@ -81,7 +81,12 @@ public class DataHolder {
 	
 	//Deletes all the data of the object from the database
 	public func deleteFromDB() {
+		let dataCollection = Database.database().reference(withPath: "Data")
+		//Convert to Firebase compatible format
+		let convertedLocation = location.replacingOccurrences(of: ".", with: ",")
+		let convertedData = data.replacingOccurrences(of: "/", with: "%")
 		
+		dataCollection.child(user).child(convertedLocation).child(convertedData).removeValue()
 	}
 	
 	public func getUser() -> String {

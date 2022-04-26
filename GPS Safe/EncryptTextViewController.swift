@@ -147,7 +147,7 @@ class EncryptTextViewController: UIViewController {
 	//Shows alert with given title and message
 	//Shows storyboard with given identifier after "OK" button is tapped
 	private func showAlertAndStoryboard(title: String, message: String, storyboardID: String) {
-		vibrate(style: .medium)
+		vibrate(style: .light)
 		let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
 		let action = UIAlertAction(title: "OK", style: .default) { _ in self.showStoryboard(identifier: storyboardID) }
 		alert.addAction(action)
