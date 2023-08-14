@@ -28,9 +28,14 @@ Accessing the hidden data can only be done by knowing its location and having a 
 
 ## Screenshots
 
+<!--
 ![1](https://github.com/pagoda8/GPS-Safe/assets/74459316/01e0c71e-2426-424a-8fc4-c40b799ee1f8)
 ![2](https://github.com/pagoda8/GPS-Safe/assets/74459316/4f44e81b-db86-48a8-b21b-8609b08f24a1)
 ![3](https://github.com/pagoda8/GPS-Safe/assets/74459316/2bc9c48e-0c8f-4564-86fb-a391ef59b568)
 ![4](https://github.com/pagoda8/GPS-Safe/assets/74459316/aad6e963-7922-45d4-a39c-98c88786719e)
+-->
 
-
+<img src="https://github.com/pagoda8/GPS-Safe/assets/74459316/01e0c71e-2426-424a-8fc4-c40b799ee1f8" width="350">
+<img src="https://github.com/pagoda8/GPS-Safe/assets/74459316/4f44e81b-db86-48a8-b21b-8609b08f24a1" width="350"><br>
+<img src="https://github.com/pagoda8/GPS-Safe/assets/74459316/2bc9c48e-0c8f-4564-86fb-a391ef59b568" width="350">
+<img src="https://github.com/pagoda8/GPS-Safe/assets/74459316/aad6e963-7922-45d4-a39c-98c88786719e" width="350"><br>
