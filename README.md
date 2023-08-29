@@ -19,8 +19,10 @@ Accessing the hidden data can only be done by knowing its location and having a 
 ## Tools used
 
 - Swift & UIKit
+- MVC pattern
 - CocoaPods
-- Firebase RT database
+- Firebase Realtime Database
+- JSON
 - CoreLocation
 - CryptoKit
 - Apple Keychain
